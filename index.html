@@ -2139,53 +2139,87 @@
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         }
 
-        function onYouTubeIframeAPIReady() {
-            youtubePlayer = new YT.Player('youtube-player', {
-                height: '0',
-                width: '0',
-                videoId: MUSIC_VIDEO_ID,
-                playerVars: {
-                    autoplay: 0,
-                    controls: 0,
-                    disablekb: 1,
-                    fs: 0,
-                    iv_load_policy: 3,
-                    modestbranding: 1,
-                    rel: 0,
-                    showinfo: 0,
-                    loop: 1,
-                    playlist: MUSIC_VIDEO_ID
-                },
-                events: {
-                    onReady: function(event) {
-                        event.target.setVolume(25);
-                    }
-                }
-            });
-        }
+        // ===================== YOUTUBE MUSIC PLAYER =====================
+let youtubePlayer = null;
+let musicPlaying = false;
+const MUSIC_VIDEO_ID = 'K59UZ8ucbnQ'; // Lofi Girl radio
 
-        // ===================== MUSIC CONTROLS (GLOBAL) =====================
-        function toggleDiscussionMusic() {
-            const btn = document.getElementById('musicToggle');
-            const icon = document.getElementById('musicIcon');
-            
-            if (!youtubePlayer || !youtubePlayer.playVideo) {
-                alert('Music player is still loading. Please try again in a moment.');
-                return;
-            }
-            
-            if (musicPlaying) {
-                youtubePlayer.pauseVideo();
-                btn.classList.remove('playing');
-                icon.className = 'fas fa-play';
-                musicPlaying = false;
-            } else {
-                youtubePlayer.playVideo();
-                btn.classList.add('playing');
-                icon.className = 'fas fa-pause';
-                musicPlaying = true;
+function loadYouTubeAPI() {
+    if (window.YT && window.YT.Player) return;
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
+function onYouTubeIframeAPIReady() {
+    youtubePlayer = new YT.Player('youtube-player', {
+        height: '0',
+        width: '0',
+        videoId: MUSIC_VIDEO_ID,
+        playerVars: {
+            autoplay: 0,
+            controls: 0,
+            disablekb: 1,
+            fs: 0,
+            iv_load_policy: 3,
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+            loop: 1,
+            playlist: MUSIC_VIDEO_ID
+        },
+        events: {
+            onReady: function(event) {
+                event.target.setVolume(25);
+            },
+            onStateChange: function(event) {
+                // Sync UI state with actual player state
+                const isPlaying = event.data === YT.PlayerState.PLAYING;
+                const isPaused = event.data === YT.PlayerState.PAUSED || 
+                                event.data === YT.PlayerState.ENDED;
+                
+                if (isPlaying || isPaused) {
+                    musicPlaying = isPlaying;
+                    updateMusicButtonState(isPlaying);
+                }
             }
         }
+    });
+}
+
+// ===================== MUSIC CONTROLS =====================
+function toggleDiscussionMusic() {
+    if (!youtubePlayer || !youtubePlayer.playVideo) {
+        alert('Music player is still loading. Please try again in a moment.');
+        return;
+    }
+    
+    if (musicPlaying) {
+        youtubePlayer.pauseVideo();
+    } else {
+        youtubePlayer.playVideo();
+    }
+    // State updates handled by onStateChange
+}
+
+function updateMusicButtonState(isPlaying) {
+    const btn = document.getElementById('musicToggle');
+    const icon = document.getElementById('musicIcon');
+    
+    if (!btn || !icon) return;
+    
+    if (isPlaying) {
+        btn.classList.add('playing');
+        icon.className = 'fas fa-pause';
+    } else {
+        btn.classList.remove('playing');
+        icon.className = 'fas fa-play';
+    }
+}
+        
+        // ===================== MUSIC CONTROLS (GLOBAL) =====================
+        
 
         function updateMusicVisibility() {
             const musicContainer = document.getElementById('bgMusicContainer');
