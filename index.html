@@ -1201,101 +1201,7 @@
 
             
 
-            /* ===== Automatic Feedback Card Styles  ===== */
-            .auto-card {
-                background: #c8cdd2;
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(197, 160, 89, 0.2);
-                padding: 25px;
-                margin-bottom: 30px;
-                border-radius: 20px;
-                transition: all 0.3s ease;
-            }
-
-            .auto-card:hover {
-                border-color: var(--gold);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            }
-
-            .auto-info-box {
-                background: rgba(255, 255, 255, 0.4);
-                border-left: 5px solid var(--accent-1);
-                padding: 15px 20px;
-                border-radius: 8px;
-                margin-bottom: 20px;
-                color: #0a0a0a;
-                font-size: 1.2rem;
-                line-height: 1.6;
-            }
-
-            .auto-question {
-                font-size: 1.3rem;
-                font-weight: 700;
-                color: black;
-                margin-bottom: 15px;
-            }
-
-            .auto-option {
-                display: block;
-                padding: 14px 18px;
-                margin-bottom: 10px;
-                background: rgba(255, 255, 255, 0.6);
-                border: 1px solid rgba(0, 0, 0, 0.1);
-                border-radius: 12px;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                user-select: none;
-            }
-
-            .auto-option:hover {
-                bakcground: rgba(197, 160, 89, 0.15);
-                transform: translateX(5px);
-                border-color: var(--gold);
-            }
-
-            .auto-card.answered .auto-option {
-                pointer-events: none;
-                opacity: 0.6;
-            }
-
-            .auto-card.answered .auto-option.correct-choice {
-                border-color: #28a475;
-                background: rgba(40, 167, 69, 0.25);
-                opacity: 1;
-                font-weight: bold;
-            }
-
-            .auto-card.answered .auto-option.wrong-choice {
-                border-color: #dc3545;
-                background: rgba(220, 53, 69, 0.25);
-                opacity: 1;
-            }
-
-            .auto-feedback-panel {
-                display: none;
-                margin-top: 15px;
-                padding: 15px;
-                border-radius: 10px;
-                font-size: 1.1rem;
-                line-height: 1.5;
-                animation: slideIn 0.4s ease;
-            }
-
-            .auto-card.answered .auto-feedback-panel {
-                display:block;
-            }
-
-            .auto-feedback-panel.correct-style {
-                background: rgba(40, 167, 69, 0.15);
-                border: 1px solid #28a745;
-                color: #155724;
-            }
-
-             .auto-feedback-panel.wrong-style {
-                background: rgba(220, 53, 69, 0.15);
-                border: 1px solid #dc3545;
-                color: #721c24;
-            }
+            
 
 
     </style>
@@ -1881,22 +1787,7 @@
          <section id="summary" class="content-section">
             <div class="intro-card">
                 <h1>Summary</h1>
-                <div class="auto-info-box">
-                    <h3>Mini Concept Check</h3>
-                    <div class="auto-card">
-                        <div class="auto-question">Question 1: Which of the following statements best defines matter?</div>
-
-                        <div class="auto-option" onclick="checkAutoAnswer(this, false)">A) Anything that produces light and heat</div>
-                        <div class="auto-option" data-correct="true" onclick="checkAutoAnswer(this, true)">B) bAnything that takes up space and has mass</div>
-                        <div class="auto-option" onclick="checkAutoAnswer(this, false)">c) Anything that can be seen and touched</div>
-                        <div class="auto-option" onclick="checkAutoAnswer(this, false)">D) Anything that flows like water or air</div>
-
-                        <div class="auto-feedback-panel"
-                            data-correct-msg="Awesome!",
-                            data-wrong-msg="Not quite.">
-                        </div>
-                    </div>  
-                </div>
+                
             </div>
         </section>
 
@@ -2002,35 +1893,7 @@
     </main>
 
     <script>
-         function checkAutoAnswer(selectedElement, isCorrect) {
-             
-            const card = selectedElement.closest('.auto-card);
-                                                 
-            if(card.classlist.contains('answered')) return;
-                                       
-            card.classlist.add('answered');
-             
-            if (isCorrect) {
-                selectedElement.classlist.add('correct-choice');
-            } else {
-                selectedElement.classlist.add('wrong-choice');
-                
-                const correctBtn = card.querySelector('[data-correct="true"]');
-                if (correctBtn) correctBtn.classList.add('correct-choice');
-            }
-
-            const feedbackPanel = card.querySelector('.auto-feedback.panel');
-            if (feedbackPanel) {
-                if (isCorrect) {
-                    feedbackPanel.classlist.add('correct-style');
-                    feedbackPanel.innerHTML = `<strong>Correct!<strong> ` + feedbackPanel.getAttribute('data-correct-msg');
-                } else {
-                    feedbackPanel.classlist.add('wrong-style');
-                    feedbackPanel.innerHTML = `<strong>Incorrect.</strong> ` + feedbackPanel.getAttribute('data-wrong-msg');
-                }
-            }
-        }
-
+        
         // ===================== SECTION CONFIGURATION =====================
         // Each section gets its own isolated data, state, and DOM targets
         const quizSections = {
