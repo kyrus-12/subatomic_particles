@@ -1951,24 +1951,24 @@
                 <hr>
                 <br>
                 <h1>Matching Activity</h1>
-                <div class="score-summary-box" id="home-matching-score-summary">
-                    <h2 id="home-matching-final-score-text">You scored 0/0!</h2>
-                    <p id="home-matching-final-message">Great job matching all pairs!</p>
+                <div class="score-summary-box" id="experiment-matching-score-summary">
+                    <h2 id="experiment-matching-final-score-text">You scored 0/0!</h2>
+                    <p id="experiment-matching-final-message">Great job matching all pairs!</p>
                 </div>
-                <div id="home-matching-section"></div>
+                <div id="experiment-matching-section"></div>
 
                 <br><br>
                 <h1>Multiple Choice</h1>
-                <div class="score-summary-box" id="home-score-summary">
-                    <h2 id="home-final-score-text">You scored 0/0!</h2>
+                <div class="score-summary-box" id="experiment-score-summary">
+                    <h2 id="experiment-final-score-text">You scored 0/0!</h2>
                     <p>Check the feedback below for explanations.</p>
                 </div>
-                <div id="home-mcq-section"></div>
+                <div id="experiment-mcq-section"></div>
 
                 <div class="button-group">
-                    <button class="btn-submit" onclick="submitQuizForSection('home-activities')">Submit Answers</button>
-                    <button class="btn-reset" onclick="resetSection('home-activities')">
-                        <i class="fas fa-redo"></i> Reset 
+                    <button class="btn-submit" onclick="submitQuizForSection('experiment')">Submit Answers</button>
+                    <button class="btn-reset" onclick="resetSection('experiment')">
+                        <i class="fas fa-redo"></i> Reset Questions
                         
                     </button>
                 </div>
@@ -2352,52 +2352,33 @@
                 }
             },
             
-            'home-activities': {
+            'experiment': {
                 matching: {
-                    containerId: 'eval-matching-section',
-                    scoreSummaryId: 'eval-matching-score-summary',
-                    scoreTextId: 'eval-matching-final-score-text',
-                    messageId: 'eval-matching-final-message',
+                    containerId: 'experiment-matching-section',
+                    scoreSummaryId: 'experiment-matching-score-summary',
+                    scoreTextId: 'experiment-matching-final-score-text',
+                    messageId: 'experiment-matching-final-message',
                     data: [
                         {
                             id: 1,
-                            question: "Match the subatomic particle with its correct description.",
+                            question: "Match the definition in Column A with the correct term in Column B.",
                             pairs: [
-                                { left: "Proton", right: "Positively charged particle", leftId: "eval-proton", rightId: "eval-positive" },
-                                { left: "Neutron", right: "Particle with no charge", leftId: "eval-neutron", rightId: "eval-neutral" },
-                                { left: "Electron", right: "Negatively charged particle", leftId: "eval-electron", rightId: "eval-negative" },
-                                { left: "Nucleus", right: "Center of the atom", leftId: "eval-nucleus", rightId: "eval-center" }
+                                { left: "The particle with a positive charge is found in the nucleus.", right: "Proton", leftId: "experiment-proton", rightId: "experiment-proton" },
+                                { left: "The particle with no charge but similar mass to a proton. ", right: "Neutron", leftId: "experiment-neutron", rightId: "experiment-neutron" },
+                                { left: "The particle with a negative charge that moves around the nucleus.", right: "Electron", leftId: "experiment-electron", rightId: "experiment-electron" },
+                                { left: "The smallest building block of matter, made of subatomic particles.", right: "Atom", leftId: "experiment-atom", rightId: "experiment-atom" }
+                                { left: "Anything that has mass and occupies space.", right: "Matter", leftId: "experiment-matter", rightId: "experiment-matter" }
                             ],
                             clues: {
-                                'eval-proton': 'Think about the charge: protons are found in the nucleus and carry a positive charge.',
-                                'eval-neutron': 'Neutrons have no electrical charge — they are neutral.',
-                                'eval-electron': 'Electrons orbit the nucleus and carry a negative charge.',
-                                'eval-nucleus': 'The nucleus is the dense center of the atom containing protons and neutrons.',
-                                'eval-positive': 'This describes a proton.',
-                                'eval-neutral': 'This describes a neutron.',
-                                'eval-negative': 'This describes an electron.',
-                                'eval-center': 'This describes the nucleus.',
+                                'experiment-proton': '',
+                                'experiment-neutron': '',
+                                'experiment-electron': '',
+                                'experiment-atom': '',
+                                'experiment-matter': '',
                             }
                         }
                     ]
                 },
-                mcq: {
-                    containerId: 'home-mcq-section',
-                    scoreSummaryId: 'home-score-summary',
-                    scoreTextId: 'home-final-score-text',
-                    data: [
-                        {
-                            id: 1,
-                            question: "What is the chemical symbol for Gold?",
-                            options: [
-                                { value: "a", text: "Go", explain: "Go is not a valid chemical symbol." },
-                                { value: "b", text: "Gd", explain: "Gd is Gadolinium, not Gold." },
-                                { value: "c", text: "Au", explain: "Correct! Au comes from the Latin 'aurum'." }
-                            ],
-                            correct: "c"
-                        }
-                    ]
-                }
             }
         };
 
