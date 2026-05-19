@@ -1877,22 +1877,7 @@
          <section id="summary" class="content-section">
             <div class="intro-card">
                 <h1>Summary</h1>
-                <div class="auto-info-box">
-                    <h3>Mini Concept Check</h3>
-                    <div class="auto-card">
-                        <div class="auto-question">1. Which of the following statements best defines matter?</div>
-
-                        <div class="auto-option" onclick="checkAutoAnswer(this, false)">Anything that produces light and heat</div>
-                        <div class="auto-option" data-correct="true" onclick="checkAutoAnswer(this, true)">Anything that takes up space and has mass</div>
-                        <div class="auto-option" onclick="checkAutoAnswer(this, false)">Anything that can be seen and touched</div>
-                        <div class="auto-option" onclick="checkAutoAnswer(this, false)">Anything that flows like water or air</div>
-
-                        <div class="auto-feedback-panel"
-                            data-correct-msg="Awesome!",
-                            data-wrong-msg="Not quite!">
-                        </div>
-                    </div>  
-                </div>
+                
             </div>
         </section>
 
@@ -2171,29 +2156,6 @@
         };
 
 
-
-        // ===================== AUTOMATED QUESTIONS =====================
-        function checkAutoAnswer(selectedElement, isCorrect) {
-            const card = selectedElement.closest('.auto-card);
-            if(card.classlist.contains.add('answered)) return;
-            card.classlist.add('answered');
-            if (isCorrect) {
-                selectedElement.classlist.add('wrong-choice');
-                const correctBtn = card.querySelector('[data-correct="true"]');
-                if (correctBtn) correctBtn.classList.add('correct-choice');
-            }
-
-            const feedbackPanel = card.querySelector('.auto-feedback.panel');
-            if (feedbackPanel) {
-                if (isCorrect) {
-                    feedbackPanel.classlist.add('correct-style');
-                    feedbackPanel.innerHTML = `<strong>Correct!</strong>` + feedbackPAnel.getAttribute('data-correct-msg');
-                } else {
-                    feedbackPanel.classlist.add('wrong-style');
-                    feedbackPanel.innerHTML = `<strong>Incorrect.</strong>` + feedbackPAnel.getAttribute('data-wrong-msg');
-                }
-            }
-        }
 
 
         
