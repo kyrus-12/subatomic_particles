@@ -2001,9 +2001,11 @@
     <script>
          function checkAutoAnswer(selectedElement, isCorrect) {
             const card = selectedElement.closest('.auto-card);
-            if(card.classlist.contains.add('answered)) return;
+            if(card.classlist.contains('answered)) return;
             card.classlist.add('answered');
             if (isCorrect) {
+                selectedElement.classlist.add('correct-choice');
+            } else {
                 selectedElement.classlist.add('wrong-choice');
                 const correctBtn = card.querySelector('[data-correct="true"]');
                 if (correctBtn) correctBtn.classList.add('correct-choice');
