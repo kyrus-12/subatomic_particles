@@ -1484,7 +1484,7 @@
                 While an atom is the smallest unit that retains an element's properties, it is not indivisible. It is composed of three primary subatomic particles, known as the proton, neutron, and electron. 
                 <br><br>
                 <div class="media-container">
-                    <img src="https://i.imgur.com/.jpg" class="img-fluid" alt="Placeholder">
+                    <img src="https://i.imgur.com/Rpz1hj9.jpg" class="img-fluid" alt="Placeholder">
                 </div>
                 <br>
                 The figure above shows how the subatomic particles are arranged in an atom. At its center lies the nucleus, which contains nearly all of the atom's mass concentrated into an incredibly tiny volume. Surrounding this nucleus is the electron cloud, an area of mostly empty space where extremely low-mass particles move dynamically in distinct energy levels. The overall structure is naturally balanced in a neutral state, where the positive charge of the core perfectly offsets the negative charge of the surrounding cloud. 
@@ -1715,7 +1715,7 @@
                 <b>•</b> In technology, the movement of electrons is essential in producing electricity and operating electronic devices. 
                 <br>
                 <div class="media-container">
-                    <img src="https://i.imgur.com/8AxIj7S" class="img-fluid" alt="Placeholder">
+                    <img src="https://i.imgur.com/8AxIj7S.jpg" class="img-fluid" alt="Placeholder">
                 </div>
                 <br><br>
                 <b>•</b> The study of subatomic particles also led to the development of nuclear energy, particle accelerators, and advanced scientific instruments. Scientists continue to study these particles to discover new information about the universe and the forces that govern it. 
@@ -1833,6 +1833,28 @@
                         
                     </button>
                 </div>
+
+                <br><br>
+                <h1>Part 3: Drawing</h1>
+                <div class="embed-container">
+                    <iframe src="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_all.html" allowfullscreen></iframe>
+                </div>
+                <p><a href="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_all.html" target="_blank" style="color: var(--gold);">Open Simulation in New Tab</a></p>
+
+                <br><br>
+                <h1>Part 4: Essay</h1>
+                <div class="embed-container" id="form-fallback">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeXATY9nwEvbxwPwlH2MRTaT2OjwMGbOjVvaC3r8JcaJqVb-Q/viewform?embedded=true"
+                        width="100%" 
+                        height="800" 
+                        frameborder="0"
+                        sandbox="allow-scripts allow-same-origin allow-forms">Loading…
+                    </iframe> 
+                </div>
+                <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeXATY9nwEvbxwPwlH2MRTaT2OjwMGbOjVvaC3r8JcaJqVb-Q/viewform" target="_blank" style="color: var(--gold);">Open Form in New Tab (if not loading properly)</a></p>
+
+                <hr style="border: 0; border-top: 1px solid var(--gold); margin: 40px 0;">
+                
             </div>
         </section>
 
@@ -1853,17 +1875,9 @@
         <section id="evaluation" class="content-section">
             <div class="intro-card">
                 <h1>Evaluation</h1>
-                <p style="margin-bottom: 30px;">Test your knowledge of subatomic particles.</p>
-
-                <h1>Part 1: Matching Type</h1>
-                <div class="score-summary-box" id="eval-matching-score-summary">
-                    <h2 id="eval-matching-final-score-text">You scored 0/0!</h2>
-                    <p id="eval-matching-final-message">Great job matching all pairs!</p>
-                </div>
-                <div id="eval-matching-section"></div>
+                <p style="margin-bottom: 30px;"><b>Directions:</b> Read each question carefully. Choose the best answer. </p>
 
                 <br><br>
-                <h1>Part 2: Multiple Choice Tests</h1>
                 <div class="score-summary-box" id="eval-score-summary">
                     <h2 id="eval-final-score-text">You scored 0/0!</h2>
                     <p>Check the feedback below for explanations.</p>
@@ -1962,6 +1976,126 @@
         // Each section gets its own isolated data, state, and DOM targets
         const quizSections = {
             'evaluation': {
+                mcq: {
+                    containerId: 'eval-mcq-section',
+                    scoreSummaryId: 'eval-score-summary',
+                    scoreTextId: 'eval-final-score-text',
+                    data: [
+                        {
+                            id: 1,
+                            question: "What is an atom?",
+                            options: [
+                                { value: "a", text: "The smallest unit of matter that keeps the properties of an element", explain: "An atom is the smallest unit of matter that still retains the chemical properties of an element." },
+                                { value: "b", text: "A type of energy that produces light", explain: "This is incorrect because energy is not matter." },
+                                { value: "c", text: "A large particle that can be seen by the naked eye", explain: "This is incorrect because atoms are too small to be seen directly." },
+                                { value: "d", text: "A substance made only of electrons", explain: "This is incorrect because atoms contain protons, neutrons, and electrons." }
+                            ],
+                            correct: "a"
+                        },
+                       {
+                            id: 2,
+                            question: "Which subatomic particle has a positive charge?",
+                            options: [
+                                { value: "a", text: "Electron", explain: "This is incorrect because electrons have a negative charge." },
+                                { value: "b", text: "Proton", explain: "A proton has a positive charge and is found inside the nucleus." },
+                                { value: "c", text: "Neutron", explain: "This is incorrect because neutrons are neutral" },
+                                { value: "d", text: "Nucleus", explain: "This is incorrect because the nucleus is a structure, not a single particle." }
+                            ],
+                            correct: "b"
+                        },
+                        {
+                            id: 3,
+                            question: "Where are electrons found in an atom?",
+                            options: [
+                                { value: "a", text: "Inside the nucleus", explain: "This is incorrect because only protons and neutrons are inside the nucleus." },
+                                { value: "b", text: "In the electron cloud outside the nucleus", explain: "Electrons are negatively charged particles that move around the nucleus in the electron cloud." },
+                                { value: "c", text: "Between protons and neutrons", explain: "This is incorrect because electrons do not exist between protons and neutrons." },
+                                { value: "d", text: "Only in the center of the atom", explain: "This is incorrect because electrons are not fixed in the center of the atom." }
+                            ],
+                            correct: "b"
+                        },
+                        {
+                            id: 4,
+                            question: "Which particle has no electric charge?",
+                            options: [
+                                { value: "a", text: "Proton", explain: "This is incorrect because protons are positively charged." },
+                                { value: "b", text: "Electron", explain: "This is incorrect because electrons are negatively charged." },
+                                { value: "c", text: "Neutron", explain: "A neutron is neutral, meaning it has no electric charge." },
+                                { value: "d", text: "Ion", explain: "This is incorrect because ions are charged atoms." }
+                            ],
+                            correct: "c"
+                        },
+                        {
+                            id: 5,
+                            question: "What is the main role of neutrons in the nucleus?",
+                            options: [
+                                { value: "a", text: "They attract electrons outside the atom.", explain: "This is incorrect because neutrons do not attract electrons." },
+                                { value: "b", text: "They give the atom a negative charge.", explain: "This is incorrect because neutrons do not give negative charge." },
+                                { value: "c", text: "They help stabilize the nucleus.", explain: "Neutrons help keep the nucleus stable by reducing the repulsion between positively charged protons." },
+                                { value: "d", text: "They make the atom disappear.", explain: "This is incorrect because neutrons do not make atoms disappear." }
+                            ],
+                            correct: "c"
+                        },
+                        {
+                            id: 6,
+                            question: "Which atomic model described the atom as a solid, indivisible sphere?",
+                            options: [
+                                { value: "a", text: "Dalton’s Solid Sphere Model", explain: "Dalton’s Solid Sphere Model described the atom as a tiny solid sphere that could not be divided." },
+                                { value: "b", text: "Thomson’s Plum Pudding Model", explain: "This is incorrect because Thomson’s model showed electrons embedded in a positive sphere." },
+                                { value: "c", text: "Rutherford’s Nuclear Model", explain: "This is incorrect because Rutherford’s model introduced the nucleus." },
+                                { value: "d", text: "Bohr’s Planetary Model", explain: "This is incorrect because Bohr’s model showed electrons in fixed orbits." }
+                            ],
+                            correct: "a"
+                        },
+                        {
+                            id: 7,
+                            question: "Which scientist discovered the electron and proposed the Plum Pudding Model?",
+                            options: [
+                                { value: "a", text: "John Dalton", explain: "This is incorrect because Dalton proposed the solid sphere model." },
+                                { value: "b", text: "J.J. Thomson", explain: "J.J. Thomson discovered the electron and proposed the Plum Pudding Model." },
+                                { value: "c", text: "Ernest Rutherford", explain: "This is incorrect because Rutherford discovered the nucleus." },
+                                { value: "d", text: "Niels Bohr", explain: "This is incorrect because Bohr proposed the planetary model." }
+                            ],
+                            correct: "b"
+                        },
+                        {
+                            id: 8,
+                            question: "What did Rutherford’s gold foil experiment show?",
+                            options: [
+                                { value: "a", text: "Atoms are completely solid.", explain: "This is incorrect because atoms are not completely solid." },
+                                { value: "b", text: "Electrons move in fixed shells.", explain: "This is incorrect because fixed shells were Bohr’s idea." },
+                                { value: "c", text: "Atoms have a small, dense, positively charged nucleus.", explain: "Atoms have a small, dense, positively charged nucleus." },
+                                { value: "d", text: "Atoms do not contain empty space.", explain: "This is incorrect because Rutherford proved atoms contain empty space." }
+                            ],
+                            correct: "c"
+                        },
+                        {
+                            id: 9,
+                            question: "Which force holds protons and neutrons together inside the nucleus?",
+                            options: [
+                                { value: "a", text: "Gravitational force", explain: "This is incorrect because gravity is too weak at atomic scales." },
+                                { value: "b", text: "Magnetic force only", explain: "This is incorrect because magnetism does not bind nucleons." },
+                                { value: "c", text: "Strong nuclear force", explain: "The strong nuclear force acts like a powerful glue that holds protons and neutrons together." },
+                                { value: "d", text: "Frictional force", explain: "This is incorrect because friction does not apply inside atoms." }
+                            ],
+                            correct: "c"
+                        },
+                        {
+                            id: 10,
+                            question: "Which technology uses the movement of electrons to process and store information?",
+                            options: [
+                                { value: "a", text: "Microchips and computers", explain: "Microchips and computers depend on the controlled movement of electrons to process, store, and transfer information." },
+                                { value: "b", text: "Wooden furniture", explain: "This is incorrect because wooden furniture does not rely on electron movement." },
+                                { value: "c", text: "Paper notebooks", explain: "This is incorrect because paper notebooks store information physically, not electronically." },
+                                { value: "d", text: "Plastic bottles", explain: "This is incorrect because plastic bottles are not used for electron-based information storage." }
+                            ],
+                            correct: "a"
+                        }
+                    ]
+                }
+            },
+            
+            'home-activities': {
                 matching: {
                     containerId: 'eval-matching-section',
                     scoreSummaryId: 'eval-matching-score-summary',
@@ -1986,81 +2120,6 @@
                                 'eval-neutral': 'This describes a neutron.',
                                 'eval-negative': 'This describes an electron.',
                                 'eval-center': 'This describes the nucleus.',
-                            }
-                        }
-                    ]
-                },
-                mcq: {
-                    containerId: 'eval-mcq-section',
-                    scoreSummaryId: 'eval-score-summary',
-                    scoreTextId: 'eval-final-score-text',
-                    data: [
-                        {
-                            id: 1,
-                            question: "Which subatomic particle has a negative charge?",
-                            options: [
-                                { value: "a", text: "Proton", explain: "Protons actually have a positive charge." },
-                                { value: "b", text: "Neutron", explain: "Neutrons are neutral, meaning they have no charge." },
-                                { value: "c", text: "Electron", explain: "Correct! Electrons are the negatively charged particles." }
-                            ],
-                            correct: "c"
-                        },
-                        {
-                            id: 2,
-                            question: "Where is most of the atom's mass located?",
-                            options: [
-                                { value: "a", text: "Electron Cloud", explain: "The electron cloud is mostly empty space!" },
-                                { value: "b", text: "Nucleus", explain: "Correct! Protons and neutrons in the nucleus account for nearly all the mass." },
-                                { value: "c", text: "Orbitals", explain: "Orbitals describe the location of electrons, which have very little mass." }
-                            ],
-                            correct: "b"
-                        },
-                        {
-                            id: 3,
-                            question: "What is the charge of a neutron?",
-                            options: [
-                                { value: "a", text: "Positive", explain: "Protons have a positive charge, not neutrons." },
-                                { value: "b", text: "Neutral", explain: "Correct! Neutrons have no charge — they are neutral." },
-                                { value: "c", text: "Negative", explain: "Electrons have a negative charge, not neutrons." }
-                            ],
-                            correct: "b"
-                        },
-                        {
-                            id: 4,
-                            question: "Which particle is found in the nucleus?",
-                            options: [
-                                { value: "a", text: "Electron", explain: "Electrons orbit outside the nucleus in electron clouds." },
-                                { value: "b", text: "Proton", explain: "Correct! Protons are located in the nucleus along with neutrons." },
-                                { value: "c", text: "Both a and b", explain: "Only protons (and neutrons) are in the nucleus — electrons are outside." }
-                            ],
-                            correct: "b"
-                        }
-                    ]
-                }
-            },
-            
-            'home-activities': {
-                matching: {
-                    containerId: 'home-matching-section',
-                    scoreSummaryId: 'home-matching-score-summary',
-                    scoreTextId: 'home-matching-final-score-text',
-                    messageId: 'home-matching-final-message',
-                    data: [
-                        {
-                            id: 1,
-                            question: "Match the element with its symbol.",
-                            pairs: [
-                                { left: "Hydrogen", right: "H", leftId: "home-hydrogen", rightId: "home-h" },
-                                { left: "Oxygen", right: "O", leftId: "home-oxygen", rightId: "home-o" },
-                                { left: "Carbon", right: "C", leftId: "home-carbon", rightId: "home-c" }
-                            ],
-                            clues: {
-                                'home-hydrogen': 'The lightest element with atomic number 1.',
-                                'home-oxygen': 'Essential for breathing, atomic number 8.',
-                                'home-carbon': 'The basis of organic chemistry, atomic number 6.',
-                                'home-h': 'This symbol represents Hydrogen.',
-                                'home-o': 'This symbol represents Oxygen.',
-                                'home-c': 'This symbol represents Carbon.',
                             }
                         }
                     ]
