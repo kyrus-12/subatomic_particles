@@ -1876,7 +1876,22 @@
          <section id="summary" class="content-section">
             <div class="intro-card">
                 <h1>Summary</h1>
-                
+                <div class="auto-info-box">
+                    <h3>Mini Concept Check</h3>
+                    <div class="auto-card">
+                        <div class="auto-question">Question 1: Which of the following statements best defines matter?</div>
+
+                        <div class="auto-option" onclick="checkAutoAnswer(this, false)">A) Anything that produces light and heat</div>
+                        <div class="auto-option" data-correct="true" onclick="checkAutoAnswer(this, true)">B) bAnything that takes up space and has mass</div>
+                        <div class="auto-option" onclick="checkAutoAnswer(this, false)">c) Anything that can be seen and touched</div>
+                        <div class="auto-option" onclick="checkAutoAnswer(this, false)">D) Anything that flows like water or air</div>
+
+                        <div class="auto-feedback-panel"
+                            data-correct-msg="Awesome!",
+                            data-wrong-msg="Not quite.">
+                        </div>
+                    </div>  
+                </div>
             </div>
         </section>
 
