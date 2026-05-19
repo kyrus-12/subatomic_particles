@@ -76,7 +76,7 @@
             font-size: 1.5rem;
             font-weight: 700;
             
-            background: linear-gradient(135deg, var(--accent-1), var(--gold));
+            background:  var(--gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -207,6 +207,18 @@
             height: auto;
             border-radius: 8px;
             margin-bottom: 10px;
+        }
+
+        .media-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: black;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .media-title:empty {
+            display:none;
         }
 
         /* ===== EMBEDS ===== */
@@ -1186,7 +1198,7 @@
         <i class="fas fa-play" id="musicIcon"></i>
     </button>
 
-        <div class="brand">AH-TEAM Blogspot</div>
+        <div class="brand">HA-TOM! Blogspot</div>
         
            </div>
     </header>
@@ -1212,12 +1224,13 @@
             <div class="intro-card">
                 <h1>Home</h1>
                 <p><b>Welcome guys!</b></p>
+                <br><br>
                 <div class="media-container">
-                    <img src="https://i.imgur.com/VVHXRAk.gif" class="img-fluid" alt="Placeholder">
+                    <img src="" class="img-fluid" alt="Placeholder">
                 </div>
 
 
-                <br><br><br><br>
+                <br><br><br><br><br><br><br>
 
                 
                 <h1>Comments</h1>
@@ -1244,19 +1257,26 @@
         <section id="introduction" class="content-section">
             <div class="intro-card">
                 <h1>Introduction</h1>
-                <p>Mag-aral ka na nak!</p>
-                <br><br>
+                <p><b>Content Standards:</b> The current structure of the atom includes subatomic particles, their symbol, mass, charge, and location.</p><br>
+                <p><b>Learning Objectives</b><br>
+                    • define subatomic particles in terms of their symbol, mass, and charge,<br>
+                    • identify the location of subatomic particles as represented in various atomic models,<br>
+                    • explain the importance of subatomic particles as the fundamental building blocks of matter and life, and<br>
+                    • build an atom using simulations with the appropriate configuration, following the planetary model. <br> <br>
+                <p><b>General Overview</b><br>
+                    Subatomic particles are the tiniest parts that make up everything around us. They are smaller than atoms and are the reason matter exists and behaves the way it does. These particles carry properties like mass and charge, which affect how they interact with one another. Scientists study them to understand why objects are solid, why electricity flows, and even how stars shine. In simple terms, subatomic particles are the invisible “building blocks” that explain the structure of matter and the forces that shape our universe.
+           
+                    <br><br><br><br>
                                
                 <div class="timed-quiz-wrapper" id="discussion-timed-quiz">
                     
                     <!-- START SCREEN -->
                     <div class="quiz-start-screen" id="discussion-quiz-start-screen">
-                        <h2>Pre-Test</h2>
-                        <p>Test your knowledge of subatomic particles with our timed challenge!</p>
+                        <h2>Test Your Knowledge!</h2>
+                        <p><b>Direction:</b> Read each statement carefully. Choose <b>FACT</b> if the statement is true and choose <b>BLUFF</b> if the statement is false. </p><br>
                         
                         <ul class="quiz-rules">
-                            <li>10 Multiple Choice Questions</li>
-                            <li>10 True or False Questions</li>
+                            <li>10 Fact or Bluff Questions</li>
                             <li>10 seconds per question</li>
                          </ul>
                         
@@ -1266,36 +1286,37 @@
                     </div>
 
                     <div class="quiz-question-screen" id="discussion-quiz-question-screen">
-    <div class="quiz-header">
-        <div>
-            <div class="quiz-progress"> 
-                Question <span id="discussion-current-qnum">1</span> / <span id="discussion-total-qnum">10</span> 
-            </div>
-            <div class="timer-container">
-                <span class="timer-label"><i class="fas fa-clock"></i></span>
-                <span class="timer-display" id="discussion-timer-display">10</span>
-            </div>
-        </div>
-        <div class="timer-bar">
-            <div class="timer-bar-fill" id="discussion-timer-bar-fill"></div>
-        </div>
-    </div> <div class="question-card" id="discussion-question-card">
-        <span class="question-type-badge" id="discussion-question-type">Multiple Choice</span>
-        <div class="question-text" id="discussion-question-text">Question text here...</div>
-        <div class="options-container" id="discussion-options-container"></div>
-        
-        <div class="feedback-panel" id="discussion-feedback-panel">
-            <div class="feedback-title" id="discussion-feedback-title">Correct!</div>
-            <div class="feedback-explanation" id="discussion-feedback-explanation">Explanation here...</div>
-        </div>
-    </div>
-
-    <div class="next-btn-container" id="discussion-next-btn-container" style="display:none;">
-        <button class="btn-next" onclick="nextTimedQuestion('discussion')"> 
-            Next <i class="fas fa-arrow-right"></i> 
-        </button>
-    </div>
-</div>
+                        <div class="quiz-header">
+                            <div>
+                                <div class="quiz-progress"> 
+                                    Question <span id="discussion-current-qnum">1</span> / <span id="discussion-total-qnum">10</span> 
+                                </div>
+                                <div class="timer-container">
+                                    <span class="timer-label"><i class="fas fa-clock"></i></span>
+                                    <span class="timer-display" id="discussion-timer-display">10</span>
+                                </div>
+                            </div>
+                            <div class="timer-bar">
+                                <div class="timer-bar-fill" id="discussion-timer-bar-fill"></div>
+                            </div>
+                        </div> <div class="question-card" id="discussion-question-card">
+                            <span class="question-type-badge" id="discussion-question-type">Multiple Choice</span>
+                            <div class="question-text" id="discussion-question-text">Question text here...</div>
+                            <div class="options-container" id="discussion-options-container"></div>
+                            
+                        
+                   <div class="feedback-panel" id="discussion-feedback-panel">
+                                <div class="feedback-title" id="discussion-feedback-title">Correct!</div>
+                                <div class="feedback-explanation" id="discussion-feedback-explanation">Explanation here...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="next-btn-container" id="discussion-next-btn-container" style="display:none;">
+                            <button class="btn-next" onclick="nextTimedQuestion('discussion')"> 
+                                Next <i class="fas fa-arrow-right"></i> 
+                            </button>
+                        </div>
+                    </div>
                         
                     <!-- RESULTS SCREEN -->
                     <div class="quiz-results-screen" id="discussion-quiz-results-screen">
@@ -1312,44 +1333,186 @@
                             <i class="fas fa-redo"></i> Try Again
                         </button>
                     </div>
-
                 
-                <!-- END TIMED QUIZ -->
+                <!-- END TIMED QUIZ -->   
+               <br><br>
+                    <h1>EXPLORE</h1>
+                <div class="embed-container">
+                    <iframe src="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_all.html" allowfullscreen></iframe>
+                </div>
+                <p><a href="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_all.html" target="_blank" style="color: var(--gold);">Open Simulation in New Tab</a></p>
                     
-                <br><br>
-                <div class="media-container">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/QK0kBwNs5QM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <br><br>
-                <div class="media-container">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/6jP7WcO-b4U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
         </div>
         </section>
-
         
 
         <section id="discussion" class="content-section">
             <div class="intro-card">
                 <h1>Discussion</h1>
-                <p>Itama ang maling akala nak!</p>
+                <p><b>MATTER</b></p>
+                Matter is anything that takes up space and has mass. This means that matter occupies room in the universe and contains material that can be measured. Everything around us, whether we can see it or not, is made of matter. For example, a rock is matter because it feels heavy and takes up space, while water is matter because it can be weighed and fills a container. Even air, though invisible, is matter because it fills balloons and rooms and has measurable mass.
+                <br><br><br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/gk04lAD.jpg" class="img-fluid" alt="Placeholder">
+                    <div class="media-title">Figure 1. States of Matter</div>
+                </div>
+                <br>
+                In figure 1 above, it shows that matter has 4 existing states: solid, liquid, gas, and plasma. Solid has a defined shape and volume. Particles within a solid are packed very close together fixed in an ordered arrangement like a table, chair and rock. Liquid state is defined to have volume but lacks a definite shape. Particles within a liquid are not packed as close together as in a solid, allowing them to slide against each other. Examples of liquids include water, oil, and alcohol.A gas lacks either a defined shape or volume. Gas particles are widely separated. Examples of gases include air and the helium in a balloon. Like a gas, a plasma lacks a defined shape or volume. However, the particles of a plasma are electrically charged and are separated by vast differences. Examples of plasma include lightning and the aurora.
+                <br><br><br>
+               <div class="media-container">
+                    <img src="https://i.imgur.com/2BNy5Zs.jpg" class="img-fluid" alt="Placeholder">
+                    <div class="media-title">Figure 2. Matter and its Smaller Constituents</div>
+                </div>
+                <br>
+                These states of matter, when zoomed in, are made up of smaller components. In Figure 2, matter is shown to be composed of molecules. A molecule is the smallest unit of a substance, formed when two or more atoms bond together, and it retains the chemical properties of that substance. Water, rocks, air, and even neon lights are all made up of molecules. These molecules, in turn, are made up of smaller particles called atoms. Atoms are the fundamental building blocks of all matter, and they are further composed of subatomic particles such as protons, neutrons, and electrons.
+                <br><br><br>
+                <b>ATOMIC MODELS</b><br>
+                An <b>atomic model</b> is a scientific representation used to explain the structure of an atom. Since atoms are too small to be seen directly, scientists developed models based on observations, experiments, and evidence.
+                <br><br>
+                The atomic model changed over time as new discoveries were made, from the early idea of atoms as solid particles to the modern quantum model that describes electrons in probability regions.
+                <br><br><br>
+                <b>Dalton’s Solid Sphere Model</b><br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/rokDA4r.jpg" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                The first major scientific atomic model was developed by <b>John Dalton</b> in the early 1800s. Dalton transformed the ancient idea of atoms into a scientific theory supported by observations in chemistry. He proposed that all matter is made of extremely small particles called atoms. In his model, atoms were imagined as solid, indivisible spheres.
+                <br><br><br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/1A8G8po.jpg" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                Dalton’s model became important because it helped explain how elements combine to form compounds. He suggested that atoms of the same element have the same mass and properties, while atoms of different elements have different masses and properties. He also explained that atoms combine in simple whole-number ratios during chemical reactions. This helped support ideas such as the law of conservation of mass, the law of definite proportions, and the law of multiple proportions.
+                <br><br>
+                In simple terms, Dalton pictured the atom as a tiny solid ball. This model was useful during his time because it gave scientists a clearer way to explain chemical reactions. However, it had one major limitation: it did not explain that atoms are made of smaller particles. Later discoveries showed that atoms are not indivisible after all.
+                <br><br><br>
+                <b>Thomson’s Plum Pudding Model</b><br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/494TnSC.jpg" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                Dalton’s model was later challenged when scientists discovered that atoms contain charged particles. In 1897, <b>J.J. Thomson</b> discovered the <b>electron</b>, a negatively charged particle. This discovery proved that atoms were not simple solid spheres. Instead, atoms had smaller parts inside them.
+                <br><br>
+                To explain the presence of electrons, Thomson supported the <b>Plum Pudding Model</b>. In this model, the atom was imagined as a positively charged sphere with negatively charged electrons embedded throughout it. The model is often compared to a pudding with plums or raisins scattered inside. The positive part represented the main body of the atom, while the electrons represented the negative particles placed within it.
+                <br><br><br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/ac8mAN0.jpg" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                This model was a major improvement because it introduced the idea that the atom has an internal structure. It also showed that electrical charge is an important part of atomic structure. However, the Plum Pudding Model still had a weakness: it did not include a nucleus. Later experiments showed that positive charge and most of the atom’s mass are concentrated in a very small central region.
+                <br><br><br>
+                <b>Rutherford’s Nuclear Model</b>
+                <br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/WCAIN5t.jpg" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                The next major change came from <b>Ernest Rutherford</b>. In 1911, Rutherford and his team performed the famous <b>gold foil experiment</b>. They directed alpha particles toward a very thin sheet of gold foil and observed what happened after the particles passed through or bounced away.
+                <br><br>
+                Most of the alpha particles passed straight through the foil. This showed that the atom is mostly empty space. However, a small number of particles were deflected, and some even bounced back. Rutherford concluded that the atom must contain a very small, dense, positively charged center. He called this central part the <b>nucleus</b>.
+                <br><br><br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/mrUTJcx.jpg" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                The <b>Nuclear Model</b> changed the understanding of the atom completely. Instead of being a solid sphere or a positively charged mass with electrons scattered inside, the atom was now understood to have a central nucleus with electrons around it. Rutherford’s model explained that most of the atom’s mass is found in the nucleus, while the rest of the atom is mostly empty space.
+                <br><br>
+                However, Rutherford’s model also had a problem. It did not clearly explain why electrons moving around the nucleus did not lose energy and fall into it. This question led to the development of the next atomic model.
+                <br><br><br>
+                <b>Bohr’s Planetary Model</b>
+                <br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/ZymxnVH.jpg" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                In 1913, <b>Niels Bohr</b>, who had studied under Rutherford, improved the nuclear model by explaining how electrons could remain stable around the nucleus. Bohr proposed that electrons move in fixed paths or shells around the nucleus. These paths are sometimes compared to planets orbiting the Sun, which is why the model is often called the <b>Planetary Model</b> or <b>Bohr Model</b>.
+                <br><br><br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/10Szwcz.jpg" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                Bohr explained that each electron shell has a specific energy level. Electrons closer to the nucleus have lower energy, while electrons farther away have higher energy. An electron can move to a higher energy level if it absorbs energy. It can also return to a lower energy level by releasing energy, often in the form of light.
+                <br><br>
+                This model helped explain why atoms release or absorb specific amounts of energy. It was especially successful in explaining the behavior of hydrogen, which has only one electron. However, the model became less successful when scientists tried to apply it to atoms with many electrons. Because of this limitation, a more advanced model was needed.
+                <br><br><br>
+                <b>The Quantum Atomic Model</b>
+                <br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/pdqGFPQ.jpg" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                The <b>Quantum Atomic Model</b> is the modern model of the atom. Unlike the Bohr Model, it does not describe electrons as moving in fixed circular paths. Instead, it explains that electrons are found in regions where they are most likely to be located. These regions are called <b>orbitals</b> or <b>electron clouds</b>.
+                <br><br>
+                In 1926, <b>Erwin Schrödinger</b> used mathematical equations to describe the probable location of electrons. This means that scientists cannot say the exact position of an electron at every moment. Instead, they can describe the area where an electron is most likely to be found. This made the model more accurate than earlier atomic models.
+                <br><br><br>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/AckewLY.jpg" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                The Quantum Model may be harder to visualize because it does not look like a simple solar system. However, it gives a better explanation of how electrons behave, especially in atoms with many electrons. It also connects atomic structure with the principles of quantum mechanics, which studies matter and energy at the atomic and subatomic levels.
+                <br><br><br>
+                <b>WHAT HOLDS ATOMS TOGETHER?</b>
+                <br>
+                Atoms may look simple in diagrams, but they are held together by powerful interactions between tiny particles. Inside an atom, there are <b>protons</b>, <b>neutrons</b>, and <b>electrons</b>. Protons and neutrons are packed together in the nucleus, while electrons are found around the nucleus in orbitals or electron clouds. The question is: <b>if protons are all positively charged and should repel one another, why does the nucleus not break apart?</b> The answer involves two important forces: the <b>strong nuclear force</b> and the <b>electromagnetic force</b>.
+                <br><br>
+                The <b>strong nuclear force</b> mainly explains why the nucleus stays together, while the <b>electromagnetic force</b> explains the attraction between the positively charged nucleus and negatively charged electrons. Together, these forces help atoms remain stable and allow matter to exist in the forms we observe every day.
+                <br><br><br>
+                <b>Strong Force</b>
+                <br>
+                The strong force is the force that holds the nucleus together. Inside the nucleus, there are protons and neutrons. Protons have a positive charge, so they naturally push away from other protons. This is because particles with the same charge repel each other.
+                <br>
+                <div class="media-container">
+                    <img src="" class="img-fluid" alt="Placeholder">
+                </div>
+                <br>
+                However, the nucleus does not easily break apart because the strong force keeps the protons and neutrons tightly together.The strong force acts like a very powerful glue inside the nucleus. It keeps the protons and neutrons close together. 
+                <br><br>
+                <b>Example:</b><br>
+                In a Lithium atom, the nucleus has 2 protons and 2 neutrons. Even though the protons repel each other, the strong force keeps the nucleus stable. 
+                <br><br><br>
+                <b>Electromagnetic Force</b>
+                <br>
+                The <b>The electromagnetic force</b> is the force between charged particles. It follows this rule:
+                <br>
+                • Opposite charges attract <br>
+                • Same charges repel <br><br>
+                In an atom:
+                • Protons are <b>positive</b><br>
+                • Electrons are <b>negative</b><br>
+                <br>
+                Because protons and electrons have opposite charges, they attract each other. This attraction helps keep electrons near the nucleus. The electromagnetic force is like the attraction between opposite sides of magnets. The positive nucleus attracts the negative electrons.        
+                <br>
+                <div class="media-container">
+                    <img src="" class="img-fluid" alt="Placeholder">
+                </div>
+                <br><br><br>
+
+                
                 <div class="media-container">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/lk5Tg6RB5ew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe id="intro-video-3" src="https://www.youtube.com/embed/lk5Tg6RB5ew?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <br><br>
+                <div class="media-container">
+                    <div class="video-wrapper">
+                        <iframe id="intro-video-1" src="https://www.youtube.com/embed/QK0kBwNs5QM?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <br><br>
+                <div class="media-container">
+                    <div class="video-wrapper">
+                        <iframe id="intro-video-2" src="https://www.youtube.com/embed/6jP7WcO-b4U?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- ===================== HOME ACTIVITIES (WITH QUIZZES) ===================== -->
+        
+         <!-- ===================== Experiment and Simulation ===================== -->
         <section id="experiment" class="content-section">
             <div class="intro-card">
-                <h1>Experiment</h1>
+                <h1>Experiment and Simulation</h1>
                 <p>May another gawain pa.</p>
                 
                 <h1>Matching Activity</h1>
@@ -1379,7 +1542,7 @@
 
         
 
-        <section id="summary" class="content-section">
+         <section id="summary" class="content-section">
             <div class="intro-card">
                 <h1>Summary</h1>
                 <p>Haist.</p>
