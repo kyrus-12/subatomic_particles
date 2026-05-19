@@ -2629,163 +2629,121 @@
         }
 
         
-        // ===================== MCQ SUBMISSION (SECTION-SCOPED) =====================
-        function submitQuizForSection(sectionKey) {
-    const config = sectionConfigs[sectionKey];
-    if (!config) return;
+        
+       function submitQuizForSection(sectionKey) {
+    const section = quizSections[sectionKey];
+    if (!section || !section.mcq) return;
 
-    let totalPoints = 0;
-    let earnedPoints = 0;
+    const config = section.mcq;
+    let score = 0;
+    const total = config.data.length;
 
-    // 1. EVALUATE MULTIPLE CHOICE
-    if (config.mcqId && config.mcData) {
-        config.mcData.forEach((q, index) => {
-            totalPoints++;
-            const container = document.getElementById(`${sectionKey}-mcq-${index}`);
-            if (!container) return;
+    config.data.forEach((q) => {
+        const quizBox = document.getElementById(`${sectionKey}-quiz-container-${q.id}`);
+        if (!quizBox) return;
 
-            // ===== ADD THIS LOGIC HERE TO LOCK THE SELECTIONS =====
-            // This stops any hovering, clicking, or selection adjustments on options
-            container.style.pointerEvents = 'none'; 
-            // ======================================================
+        // Visual lock setting: prevent multiple re-submissions safely
+        quizBox.classList.add('show-results');
+        
+        // Disable individual choices to lock user selections
+        const radioInputs = quizBox.querySelectorAll('input[type="radio"]');
+        radioInputs.forEach(input => input.disabled = true);
+        
+        const optionsLabels = quizBox.querySelectorAll('.option');
+        optionsLabels.forEach(label => label.style.pointerEvents = 'none');
 
-            const selected = container.querySelector(`input[name="${sectionKey}-q${index}"]:checked`);
-            const feedbackDiv = document.getElementById(`${sectionKey}-mc-fb-${index}`);
+        const selected = quizBox.querySelector(`input[name="${sectionKey}-q${q.id}"]:checked`);
+        const feedbackBox = document.getElementById(`${sectionKey}-feedback-${q.id}`);
+        if (!feedbackBox) return;
 
-            // Clear previous evaluation styles
-            container.querySelectorAll('.option').forEach(opt => {
+        const statusText = feedbackBox.querySelector('.status-text');
+        const explanationText = feedbackBox.querySelector('.explanation-text');
+        
+        let explanation = q.options.find(o => o.value === q.correct)?.explain || '';
+
+        // Highlight correct/incorrect answers visually
+        q.options.forEach(opt => {
+            const optionLabel = quizBox.querySelector(`input[value="${opt.value}"]`)?.parentElement;
+            if (optionLabel) {
+                if (opt.value === q.correct) {
+                    optionLabel.classList.add('correct-choice');
+                } else if (selected && selected.value === opt.value) {
+                    optionLabel.classList.add('wrong-choice');
+                }
+            }
+        });
+
+        if (selected) {
+            const isCorrect = selected.value === q.correct;
+            if (isCorrect) {
+                score++;
+                statusText.innerHTML = "<b>✅ Correct!</b>";
+                feedbackBox.className = 'feedback correct-feedback';
+            } else {
+                statusText.innerHTML = "<b>❌ Incorrect.</b>";
+                feedbackBox.className = 'feedback incorrect-feedback';
+            }
+            explanationText.innerHTML = explanation;
+            feedbackBox.style.display = "block";
+        } else {
+            statusText.innerHTML = "<b>⚠️ Left Blank.</b>";
+            feedbackBox.className = 'feedback incorrect-feedback';
+            explanationText.innerHTML = `You didn't select an answer. Remember: ${explanation}`;
+            feedbackBox.style.display = "block";
+        }
+    });
+
+    const summary = document.getElementById(config.scoreSummaryId);
+    const scoreText = document.getElementById(config.scoreTextId);
+    if (summary && scoreText) {
+        summary.style.display = "block";
+        scoreText.innerHTML = `You scored ${score} out of ${total}!`;
+    }
+}
+
+
+        function resetSection(sectionKey) {
+    // A. Re-initialize baseline matching game matrices
+    initSectionState(sectionKey);
+    renderMatchingForSection(sectionKey);
+    initMatchingEventsForSection(sectionKey);
+
+    // B. Re-render standard Multiple Choice components safely
+    renderMCQForSection(sectionKey);
+
+    // C. Reset score visibility fields down the container layer
+    const section = quizSections[sectionKey];
+    if (section && section.matching) {
+        const matchSummary = document.getElementById(section.matching.scoreSummaryId);
+        if (matchSummary) matchSummary.style.display = 'none';
+    }
+    if (section && section.mcq) {
+        const mcqSummary = document.getElementById(section.mcq.scoreSummaryId);
+        if (mcqSummary) mcqSummary.style.display = 'none';
+    }
+
+    // D. Safe cleanup block for automated feedback elements inside the active tab
+    const activeSection = document.getElementById(sectionKey === 'home-activities' ? 'experiment' : sectionKey);
+    if (activeSection) {
+        const autoCards = activeSection.querySelectorAll('.auto-card');
+        autoCards.forEach(card => {
+            card.classList.remove('answered');
+            card.style.pointerEvents = 'auto'; 
+            
+            card.querySelectorAll('.auto-option').forEach(opt => {
                 opt.classList.remove('correct-choice', 'wrong-choice');
             });
-
-            let isCorrect = false;
-            if (selected) {
-                if (parseInt(selected.value) === q.correct) {
-                    earnedPoints++;
-                    isCorrect = true;
-                    selected.closest('.option').classList.add('correct-choice');
-                } else {
-                    selected.closest('.option').classList.add('wrong-choice');
-                }
-            }
-
-            // Always highlight the correct answer choice
-            const correctOption = container.querySelector(`input[value="${q.correct}"]`);
-            if (correctOption) {
-                correctOption.closest('.option').classList.add('correct-choice');
-            }
-
-            if (feedbackDiv) {
-                feedbackDiv.style.display = 'block';
-                if (isCorrect) {
-                    feedbackDiv.className = 'feedback correct-feedback';
-                    feedbackDiv.innerHTML = `✅<b>Correct!</b> ${q.feedback}`;
-                } else {
-                    feedbackDiv.className = 'feedback wrong-feedback';
-                    const choiceLetter = selected ? String.fromCharCode(65 + parseInt(selected.value)) : 'None';
-                    const correctLetter = String.fromCharCode(65 + q.correct);
-                    feedbackDiv.innerHTML = `❌<b>Incorrect.</b> You chose ${choiceLetter}. The correct answer is ${correctLetter}.<br>${q.feedback}`;
-                }
+            
+            const feedbackPanel = card.querySelector('.auto-feedback-panel');
+            if (feedbackPanel) {
+                feedbackPanel.classList.remove('correct-style', 'wrong-style');
+                feedbackPanel.innerHTML = '';
             }
         });
-    }
-
-    // 2. EVALUATE IDENTIFICATION (If the active tab section contains it)
-    if (config.idId && config.idData) {
-        config.idData.forEach((q, index) => {
-            totalPoints++;
-            const inputField = document.getElementById(`${sectionKey}-id-input-${index}`);
-            const feedbackDiv = document.getElementById(`${sectionKey}-id-fb-${index}`);
-            if (!inputField) return;
-
-            // ===== LOCK INPUT TEXT FIELDS AS WELL =====
-            inputField.disabled = true; 
-            // =========================================
-
-            const userAns = inputField.value.trim().toLowerCase();
-            const isCorrect = q.acceptedAnswers.some(ans => userAns === ans.toLowerCase());
-
-            if (isCorrect) {
-                earnedPoints++;
-                inputField.style.borderColor = '#28a745';
-                inputField.style.backgroundColor = 'rgba(40, 167, 69, 0.15)';
-            } else {
-                inputField.style.borderColor = '#dc3545';
-                inputField.style.backgroundColor = 'rgba(220, 53, 69, 0.15)';
-            }
-
-            if (feedbackDiv) {
-                feedbackDiv.style.display = 'block';
-                if (isCorrect) {
-                    feedbackDiv.className = 'feedback correct-feedback';
-                    feedbackDiv.innerHTML = `✅<b>Correct!</b> ${q.feedback}`;
-                } else {
-                    feedbackDiv.className = 'feedback wrong-feedback';
-                    feedbackDiv.innerHTML = `❌<b>Incorrect.</b> Standard answer: <b>${q.acceptedAnswers[0]}</b><br>${q.feedback}`;
-                }
-            }
-        });
-    }
-
-    // Display summary banner box
-    const summaryBox = document.getElementById(config.summaryId);
-    const scoreText = document.getElementById(config.scoreTextId);
-    if (summaryBox && scoreText) {
-        scoreText.innerText = `You scored ${earnedPoints} / ${totalPoints}!`;
-        summaryBox.style.display = 'block';
-        summaryBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 }
 
         
-        // ===================== RESET (SECTION-SCOPED) =====================
-        function resetSection(sectionKey) {
-    const config = sectionConfigs[sectionKey];
-    if (!config) return;
-
-    // Reset multiple choice layout rules
-    if (config.mcqId && config.mcData) {
-        config.mcData.forEach((q, index) => {
-            const container = document.getElementById(`${sectionKey}-mcq-${index}`);
-            if (container) {
-                container.style.pointerEvents = 'auto'; // <--- RE-ENABLE CLICKS
-                container.querySelectorAll('.option').forEach(opt => {
-                    opt.classList.remove('correct-choice', 'wrong-choice');
-                });
-            }
-            const radio = container?.querySelectorAll(`input[name="${sectionKey}-q${index}"]`);
-            if (radio) radio.forEach(r => r.checked = false);
-
-            const feedbackDiv = document.getElementById(`${sectionKey}-mc-fb-${index}`);
-            if (feedbackDiv) {
-                feedbackDiv.style.display = 'none';
-                feedbackDiv.innerHTML = '';
-            }
-        });
-    }
-
-    // Reset identification layout rules
-    if (config.idId && config.idData) {
-        config.idData.forEach((q, index) => {
-            const inputField = document.getElementById(`${sectionKey}-id-input-${index}`);
-            if (inputField) {
-                inputField.disabled = false; // <--- RE-ENABLE TEXT INPUTS
-                inputField.value = '';
-                inputField.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                inputField.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
-            }
-            const feedbackDiv = document.getElementById(`${sectionKey}-id-fb-${index}`);
-            if (feedbackDiv) {
-                feedbackDiv.style.display = 'none';
-                feedbackDiv.innerHTML = '';
-            }
-        });
-    }
-
-    // Hide summary score box
-    const summaryBox = document.getElementById(config.summaryId);
-    if (summaryBox) summaryBox.style.display = 'none';
-}
-
         
         // ===================== GLOBAL RESET (ALL SECTIONS) =====================
         function resetAll() {
