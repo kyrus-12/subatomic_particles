@@ -2018,10 +2018,10 @@
             if (feedbackPanel) {
                 if (isCorrect) {
                     feedbackPanel.classlist.add('correct-style');
-                    feedbackPanel.innerHTML = `<strong>Correct!</strong>` + feedbackPAnel.getAttribute('data-correct-msg');
+                    feedbackPanel.innerHTML = `<strong>Correct!<strong>` + feedbackPanel.getAttribute('data-correct-msg');
                 } else {
                     feedbackPanel.classlist.add('wrong-style');
-                    feedbackPanel.innerHTML = `<strong>Incorrect.</strong>` + feedbackPAnel.getAttribute('data-wrong-msg');
+                    feedbackPanel.innerHTML = `<strong>Incorrect.</strong>` + feedbackPanel.getAttribute('data-wrong-msg');
                 }
             }
         }
