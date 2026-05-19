@@ -26,6 +26,8 @@
             min-height: 100vh;
             overflow-x: hidden;
             font-size: 1.3rem;
+
+            font-size: clamp(1.1rem, 1vw + 0.8rem, 1.4rem);
         }
 
         /* ===== BACKGROUND ===== */
@@ -133,6 +135,8 @@
             width: calc(100% - 260px);
             display: flex;
             flex-direction: column;
+
+            max-width: 1200px;
         }
     
         
@@ -185,6 +189,7 @@
             padding: 15px;
             background: rgba(0,0,0,0.2);
             border-radius: 12px;
+            max-width: 750px;
             border: 1px dashed var(--gold);
         }
 
@@ -204,6 +209,7 @@
 
         .img-fluid {
             width: 100%;
+            max-width: 750px;
             height: auto;
             border-radius: 8px;
             margin-bottom: 10px;
@@ -220,6 +226,12 @@
         .media-title:empty {
             display:none;
         }
+
+        .question, .auto-question, .question-text {
+            font-size: clamp(1.2rem, 1.2vw + 0.7rem, 1.6rem);
+            font-weight: 700;
+            color: black;
+            margin-bottom: 20px;
 
         /* ===== EMBEDS ===== */
         .embed-container {
