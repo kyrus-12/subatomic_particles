@@ -1196,6 +1196,101 @@
             color: var(--text-muted);
         }
 
+            
+
+
+            /* ===== Automatic Feedback Card Styles  ===== */
+            .auto-card {
+                background: #c8cdd2;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(197, 160, 89, 0.2);
+                padding: 25px;
+                marrgin-bottom: 30px;
+                border-radius: 20px;
+                transition: all 0.3s ease;
+            }
+
+            .auto-card:hover {
+                border-color: var(--gold);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .auto-info-box {
+                background: rgba(255, 255, 255, 0.4);
+                border-left: 5px solid var(--accent-1);
+                padding: 15px 20px;
+                border-radius: 8px;
+                margin-bottom: 20px;
+                color: #0a0a0a;
+                font-size: 1.2rem;
+                line-height: 1.6;
+            }
+
+            .auto-question {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: black;
+                margin-bottom: 15px;
+            }
+
+            .auto-option {
+                display: block;
+                padding: 14px 18px;
+                margin-bottom: 10px;
+                background: rgba(255, 255, 255, 0.6);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 12px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                user-select: none;
+            }
+
+            .auto-option:hover {
+                bakcground: rgba(197, 160, 89, 0.15);
+                transform: translateX(5px);
+                border-color: var(--gold);
+            }
+
+            .auto-card.answered .auto-option.correct-choice {
+                border-color: #dc3545;
+                background: rgba(40, 167, 69, 0.25);
+                opacity: 1;
+                font-weight: bold;
+            }
+
+            .auto-card.answered .auto-option.wrong-choice {
+                border-color: #dc3545;
+                background: rgba(220, 53, 69, 0.25);
+                opacity: 1;
+            }
+
+            .auto-feedback-panel {
+                display: none;
+                margin-top: 15px;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 1.1rem;
+                line-height: 1.5;
+                animation: slideIn 0.4s ease;
+            }
+
+            .auto-card.answered .auto-feedback-panel {
+                display:block;
+            }
+
+            .auto-feedback-panel.correct-style {
+                background: rgba(40, 167, 69, 0.15);
+                border: 1px solid #28a745;
+                color: #155724;
+            }
+
+             .auto-feedback-panel.wrong-style {
+                background: rgba(220, 53, 69, 0.15);
+                border: 1px solid #dc3545;
+                color: #721c24;
+            }
+
+            
 
     </style>
 </head>
@@ -1232,14 +1327,14 @@
         <section id="home" class="content-section active">
             <div class="intro-card">
                 <h1>Home</h1>
-                <p><b>Welcome guys!</b></p>
-                <br><br>
                 <div class="media-container">
-                    <img src="" class="img-fluid" alt="Placeholder">
-                </div>
+                    <div class="video-wrapper">
+                        <iframe id="intro-video-8" src="https://www.youtube.com/embed/Q2g6KodVMXY?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>   
 
 
-                <br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br>
 
                 
                 <h1>Comments</h1>
@@ -1374,7 +1469,9 @@
                 </div>
                 <br>
                 These states of matter, when zoomed in, are made up of smaller components. In Figure 2, matter is shown to be composed of molecules. A molecule is the smallest unit of a substance, formed when two or more atoms bond together, and it retains the chemical properties of that substance. Water, rocks, air, and even neon lights are all made up of molecules. These molecules, in turn, are made up of smaller particles called atoms. Atoms are the fundamental building blocks of all matter, and they are further composed of subatomic particles such as protons, neutrons, and electrons.
-                <br><br><br>
+                <br><br>
+                <hr>
+                <br><br>
                 <b>ATOM AND ITS SUBATOMIC PARTICLES</b><br><br>
                 <div class="media-container">
                     <div class="video-wrapper">
@@ -1392,7 +1489,7 @@
                 <br>
                 The figure above shows how the subatomic particles are arranged in an atom. At its center lies the nucleus, which contains nearly all of the atom's mass concentrated into an incredibly tiny volume. Surrounding this nucleus is the electron cloud, an area of mostly empty space where extremely low-mass particles move dynamically in distinct energy levels. The overall structure is naturally balanced in a neutral state, where the positive charge of the core perfectly offsets the negative charge of the surrounding cloud. 
                 <br><br>
-                <b>ATOM AND ITS SUBATOMIC PARTICLES</b><br>
+                <b>STRUCTURE OF SUBATOMIC PARTICLE</b><br>
                 <b>Proton</b><br>
                 <div class="media-container">
                     <img src="https://i.imgur.com/.jpg" class="img-fluid" alt="Placeholder">
@@ -1450,7 +1547,9 @@
                         <td>Outside the nucleus </td>
                     </tr>
                 </table>
-                <br><br><br>
+                <br><br>
+                <hr>
+                <br><br>
                 <b>ATOMIC MODELS</b><br><br>
                 <div class="media-container">
                     <div class="video-wrapper">
@@ -1595,7 +1694,9 @@
                 <div class="media-container">
                     <img src="https://i.imgur.com/D2XJOp0.jpg" class="img-fluid" alt="Placeholder">
                 </div>
-                <br><br><br>
+                <br><br>
+                <hr>
+                <br><br>
                 <b>IMPORTANCE OF SUBATOMIC PARTICLES</b>
                 <b>•</b> Subatomic particles play a major role in many fields of science and technology. In physics, they help scientists understand the nature of matter and energy.
                 <br><br>
@@ -1786,15 +1887,13 @@
                 <br><br>
                 <h1>Part 4: Essay</h1>
                 <div class="embed-container" id="form-fallback">
-      <iframe 
-        src="https://docs.google.com/forms/d/e/1FAIpQLSeXATY9nwEvbxwPwlH2MRTaT2OjwMGbOjVvaC3r8JcaJqVb-Q/viewform?embedded=true"
-        width="100%" 
-        height="800" 
-        frameborder="0"
-        sandbox="allow-scripts allow-same-origin allow-forms">
-        Loading…
-    </iframe>
-</div>
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeXATY9nwEvbxwPwlH2MRTaT2OjwMGbOjVvaC3r8JcaJqVb-Q/viewform?embedded=true"
+                        width="100%" 
+                        height="800" 
+                        frameborder="0"
+                        sandbox="allow-scripts allow-same-origin allow-forms">Loading…
+                    </iframe> 
+                </div>
                 <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeXATY9nwEvbxwPwlH2MRTaT2OjwMGbOjVvaC3r8JcaJqVb-Q/viewform" target="_blank" style="color: var(--gold);">Open Form in New Tab (if not loading properly)</a></p>
 
                 <hr style="border: 0; border-top: 1px solid var(--gold); margin: 40px 0;">
@@ -1804,7 +1903,11 @@
         <section id="authors" class="content-section">
             <div class="intro-card">
                 <h1>About the Authors</h1>
-                <p>Meet our team. Connect with us on social media:</p>
+                <div class="media-container">
+                    <div class="video-wrapper">
+                        <iframe id="intro-video-9" src="https://www.youtube.com/embed/46BxpgooNGQ?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>   
                 <div class="social-container">
                     <a href="https://ph.pinterest.com/rusky0537/" class="social-btn" target="_blank"><i class="fab fa-pinterest"></i></a>
                     <a href="https://www.tiktok.com/@jrtiktok29?_r=1&_t=ZS-95j09zJG9hp" class="social-btn" target="_blank"><i class="fab fa-tiktok"></i></a>
@@ -1819,32 +1922,31 @@
                 <div class="media-container">
                     <div class="video-wrapper">
                         <iframe id="intro-video-4" src="https://www.youtube.com/embed/a9PcK0_7clc?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <div class="media-title">Screencast Video</div>
                     </div>
+                    <div class="media-title">Screencast Video</div>
                 </div>
 
                 <br><br>
                 <div class="media-container">
                     <div class="video-wrapper">
                         <iframe id="intro-video-5" src="https://www.youtube.com/embed/48uH_2xa2h4?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <div class="media-title">Audio Slideshow</div>
                     </div>
+                    <div class="media-title">Audio Slideshow</div>
                 </div>
                 <br><br>
                 <div class="media-container">
                     <div class="video-wrapper">
                         <iframe id="intro-video-6" src="https://www.youtube.com/embed/xS9Q-tGr6UA?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div
                         <div class="media-title">Podcast Video</div>
-                    </div>
                 </div>
                 <br><br>
                 <div class="media-container">
                     <div class="video-wrapper">
-                        <iframe id="intro-video-7" src="https://www.youtube.com/embed/?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <div class="media-title">Animation Video</div>
+                        <iframe id="intro-video-7" src="https://www.youtube.com/embed/LSVY6xR78tA?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
-                </div>
-                
+                    <div class="media-title">Animation Video</div>
+                </div>   
             </div>
         </section>
         
