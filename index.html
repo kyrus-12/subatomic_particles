@@ -2630,116 +2630,74 @@
 
         
         
-       function submitQuizForSection(sectionKey) {
-    const section = quizSections[sectionKey];
-    if (!section || !section.mcq) return;
+       // ===================== MCQ SUBMISSION (SECTION-SCOPED) =====================
+        function submitQuizForSection(sectionKey) {
+            const section = quizSections[sectionKey];
+            if (!section || !section.mcq) return;
+            
+            const config = section.mcq;
+            const container = document.getElementById(config.containerId);
+            const quizContainers = container.querySelectorAll('.quiz-container');
+            let score = 0;
+            const total = quizContainers.length;
 
-    const config = section.mcq;
-    let score = 0;
-    const total = config.data.length;
+            quizContainers.forEach((container, idx) => {
+                const qNum = idx + 1;
+                const correctAnswer = container.dataset.correct;
+                const feedbackBox = document.getElementById(`${sectionKey}-feedback-q${qNum}`);
+                const statusText = feedbackBox.querySelector('.status-text');
+                const explanationText = feedbackBox.querySelector('.explanation-text');
+                const selected = container.querySelector(`input[name="${sectionKey}-q${qNum}"]:checked`);
 
-    config.data.forEach((q) => {
-        const quizBox = document.getElementById(`${sectionKey}-quiz-container-${q.id}`);
-        if (!quizBox) return;
+                container.classList.add('show-results');
+                container.querySelectorAll('.option').forEach(opt => opt.classList.remove('correct-choice', 'wrong-choice'));
 
-        // Visual lock setting: prevent multiple re-submissions safely
-        quizBox.classList.add('show-results');
-        
-        // Disable individual choices to lock user selections
-        const radioInputs = quizBox.querySelectorAll('input[type="radio"]');
-        radioInputs.forEach(input => input.disabled = true);
-        
-        const optionsLabels = quizBox.querySelectorAll('.option');
-        optionsLabels.forEach(label => label.style.pointerEvents = 'none');
-
-        const selected = quizBox.querySelector(`input[name="${sectionKey}-q${q.id}"]:checked`);
-        const feedbackBox = document.getElementById(`${sectionKey}-feedback-${q.id}`);
-        if (!feedbackBox) return;
-
-        const statusText = feedbackBox.querySelector('.status-text');
-        const explanationText = feedbackBox.querySelector('.explanation-text');
-        
-        let explanation = q.options.find(o => o.value === q.correct)?.explain || '';
-
-        // Highlight correct/incorrect answers visually
-        q.options.forEach(opt => {
-            const optionLabel = quizBox.querySelector(`input[value="${opt.value}"]`)?.parentElement;
-            if (optionLabel) {
-                if (opt.value === q.correct) {
-                    optionLabel.classList.add('correct-choice');
-                } else if (selected && selected.value === opt.value) {
-                    optionLabel.classList.add('wrong-choice');
+                if (selected) {
+                    const isCorrect = selected.value === correctAnswer;
+                    const explanation = selected.getAttribute('data-explain');
+                    if (isCorrect) {
+                        score++;
+                        selected.parentElement.classList.add('correct-choice');
+                        statusText.innerHTML = "<b>✅Correct!</b>";
+                        feedbackBox.className = 'feedback correct-feedback';
+                    } else {
+                        selected.parentElement.classList.add('wrong-choice');
+                        statusText.innerHTML = "<b>❌Incorrect.</b>";
+                        feedbackBox.className = 'feedback incorrect-feedback';
+                    }
+                    explanationText.innerHTML = explanation;
+                    feedbackBox.style.display = "block";
+                } else {
+                    statusText.innerHTML = "Please select an answer.";
+                    feedbackBox.style.display = "block";
                 }
-            }
-        });
+            });
 
-        if (selected) {
-            const isCorrect = selected.value === q.correct;
-            if (isCorrect) {
-                score++;
-                statusText.innerHTML = "<b>✅ Correct!</b>";
-                feedbackBox.className = 'feedback correct-feedback';
-            } else {
-                statusText.innerHTML = "<b>❌ Incorrect.</b>";
-                feedbackBox.className = 'feedback incorrect-feedback';
-            }
-            explanationText.innerHTML = explanation;
-            feedbackBox.style.display = "block";
-        } else {
-            statusText.innerHTML = "<b>⚠️ Left Blank.</b>";
-            feedbackBox.className = 'feedback incorrect-feedback';
-            explanationText.innerHTML = `You didn't select an answer. Remember: ${explanation}`;
-            feedbackBox.style.display = "block";
+            const summary = document.getElementById(config.scoreSummaryId);
+            const scoreText = document.getElementById(config.scoreTextId);
+            summary.style.display = "block";
+            scoreText.innerHTML = `You scored ${score} out of ${total}!`;
         }
-    });
 
-    const summary = document.getElementById(config.scoreSummaryId);
-    const scoreText = document.getElementById(config.scoreTextId);
-    if (summary && scoreText) {
-        summary.style.display = "block";
-        scoreText.innerHTML = `You scored ${score} out of ${total}!`;
-    }
-}
-
-
+        // ===================== RESET (SECTION-SCOPED) =====================
         function resetSection(sectionKey) {
-    // A. Re-initialize baseline matching game matrices
+    // Re-initialize state
     initSectionState(sectionKey);
+    
+    // Re-render matching activity
     renderMatchingForSection(sectionKey);
     initMatchingEventsForSection(sectionKey);
-
-    // B. Re-render standard Multiple Choice components safely
+    
+    // Re-render MCQ
     renderMCQForSection(sectionKey);
-
-    // C. Reset score visibility fields down the container layer
+    
+    // Hide score summaries
     const section = quizSections[sectionKey];
-    if (section && section.matching) {
-        const matchSummary = document.getElementById(section.matching.scoreSummaryId);
-        if (matchSummary) matchSummary.style.display = 'none';
+    if (section.matching) {
+        document.getElementById(section.matching.scoreSummaryId).style.display = 'none';
     }
-    if (section && section.mcq) {
-        const mcqSummary = document.getElementById(section.mcq.scoreSummaryId);
-        if (mcqSummary) mcqSummary.style.display = 'none';
-    }
-
-    // D. Safe cleanup block for automated feedback elements inside the active tab
-    const activeSection = document.getElementById(sectionKey === 'home-activities' ? 'experiment' : sectionKey);
-    if (activeSection) {
-        const autoCards = activeSection.querySelectorAll('.auto-card');
-        autoCards.forEach(card => {
-            card.classList.remove('answered');
-            card.style.pointerEvents = 'auto'; 
-            
-            card.querySelectorAll('.auto-option').forEach(opt => {
-                opt.classList.remove('correct-choice', 'wrong-choice');
-            });
-            
-            const feedbackPanel = card.querySelector('.auto-feedback-panel');
-            if (feedbackPanel) {
-                feedbackPanel.classList.remove('correct-style', 'wrong-style');
-                feedbackPanel.innerHTML = '';
-            }
-        });
+    if (section.mcq) {
+        document.getElementById(section.mcq.scoreSummaryId).style.display = 'none';
     }
 }
 
