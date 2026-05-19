@@ -1890,7 +1890,7 @@
                         <div class="auto-option" onclick="checkAutoAnswer(this, false)">Anything that flows like water or air</div>
 
                         <div class="auto-feedback-panel"
-                            data-correct-msg="Awesome!"
+                            data-correct-msg="Awesome!",
                             data-wrong-msg="Not quite!">
                         </div>
                     </div>  
@@ -2177,8 +2177,8 @@
         // ===================== AUTOMATED QUESTIONS =====================
         function checkAutoAnswer(selectedElement, isCorrect) {
             const card = selectedElement.closest('.auto-card);
-                                                 if(card.classlist.contains.add('answered)) return;
-                                                                                card.classlist.add('answered');
+            if(card.classlist.contains.add('answered)) return;
+            card.classlist.add('answered');
             if (isCorrect) {
                 selectedElement.classlist.add('wrong-choice');
                 const correctBtn = card.querySelector('[data-correct="true"]');
