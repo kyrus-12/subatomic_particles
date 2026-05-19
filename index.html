@@ -1253,8 +1253,13 @@
                 border-color: var(--gold);
             }
 
+            .auto-card.answered .auto-option {
+                pointer-events: none;
+                opacity: 0.6;
+            }
+
             .auto-card.answered .auto-option.correct-choice {
-                border-color: #dc3545;
+                border-color: #28a475;
                 background: rgba(40, 167, 69, 0.25);
                 opacity: 1;
                 font-weight: bold;
@@ -2018,10 +2023,10 @@
             if (feedbackPanel) {
                 if (isCorrect) {
                     feedbackPanel.classlist.add('correct-style');
-                    feedbackPanel.innerHTML = `<strong>Correct!<strong>` + feedbackPanel.getAttribute('data-correct-msg');
+                    feedbackPanel.innerHTML = `<strong>Correct!<strong> ` + feedbackPanel.getAttribute('data-correct-msg');
                 } else {
                     feedbackPanel.classlist.add('wrong-style');
-                    feedbackPanel.innerHTML = `<strong>Incorrect.</strong>` + feedbackPanel.getAttribute('data-wrong-msg');
+                    feedbackPanel.innerHTML = `<strong>Incorrect.</strong> ` + feedbackPanel.getAttribute('data-wrong-msg');
                 }
             }
         }
