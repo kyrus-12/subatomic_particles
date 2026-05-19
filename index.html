@@ -1921,6 +1921,13 @@
          data-wrong-msg="Remember, protons are positive (+), neutrons are neutral (0), and electrons carry the negative (-) value.">
     </div>
 </div>
+
+                <div class="button-group">
+    <button type="button" class="btn-reset" onclick="resetTargetedAutomatedQuestions(this)">
+        <i class="fas fa-redo"></i> Reset Practice Questions
+    </button>
+</div>
+                
             </div>
         </section>
 
@@ -2057,6 +2064,43 @@
             feedbackPanel.classList.add('wrong-style');
             feedbackPanel.innerHTML = `<strong>❌ Incorrect.</strong> ` + feedbackPanel.getAttribute('data-wrong-msg');
         }
+    }
+}
+
+        function resetTargetedAutomatedQuestions(buttonElement) {
+    // Finds the parent section or container holding these specific automated questions
+    const parentContainer = buttonElement.closest('.content-section') || buttonElement.closest('section') || buttonElement.parentElement.parentElement;
+    
+    if (!parentContainer) return;
+
+    // Selects ONLY the automated question cards within this parent tab section
+    const autoCards = parentContainer.querySelectorAll('.auto-card');
+    
+    autoCards.forEach(card => {
+        // 1. Clear out the answered state lock
+        card.classList.remove('answered');
+        
+        // 2. Unlock choice option button cursor interactions
+        card.style.pointerEvents = 'auto'; 
+        
+        // 3. Clear all visual correct/wrong color layouts from choice boxes
+        card.querySelectorAll('.auto-option').forEach(opt => {
+            opt.classList.remove('correct-choice', 'wrong-choice');
+        });
+        
+        // 4. Safe wipe the dynamic text fields inside the feedback box
+        const feedbackPanel = card.querySelector('.auto-feedback-panel');
+        if (feedbackPanel) {
+            feedbackPanel.classList.remove('correct-style', 'wrong-style');
+            feedbackPanel.innerHTML = '';
+            // DO NOT USE feedbackPanel.style.display = 'none' here!
+        }
+    });
+
+    // Smoothly scroll the screen view back up to the first item box in this section group
+    const firstInfoBox = parentContainer.querySelector('.auto-info-box');
+    if (firstInfoBox) {
+        firstInfoBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
         
