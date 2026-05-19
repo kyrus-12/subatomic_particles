@@ -2184,10 +2184,10 @@
     if (feedbackPanel) {
         if (isCorrect) {
             feedbackPanel.classList.add('correct-style');
-            feedbackPanel.innerHTML = `<strong>✅ Correct!</strong> ` + feedbackPanel.getAttribute('data-correct-msg');
+            feedbackPanel.innerHTML = `<strong>✅Correct!</strong> ` + feedbackPanel.getAttribute('data-correct-msg');
         } else {
             feedbackPanel.classList.add('wrong-style');
-            feedbackPanel.innerHTML = `<strong>❌ Incorrect.</strong> ` + feedbackPanel.getAttribute('data-wrong-msg');
+            feedbackPanel.innerHTML = `<strong>❌Incorrect.</strong> ` + feedbackPanel.getAttribute('data-wrong-msg');
         }
     }
 }
@@ -2628,77 +2628,165 @@
             document.getElementById(sectionKey).scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        
         // ===================== MCQ SUBMISSION (SECTION-SCOPED) =====================
         function submitQuizForSection(sectionKey) {
-            const section = quizSections[sectionKey];
-            if (!section || !section.mcq) return;
-            
-            const config = section.mcq;
-            const container = document.getElementById(config.containerId);
-            const quizContainers = container.querySelectorAll('.quiz-container');
-            let score = 0;
-            const total = quizContainers.length;
+    const config = sectionConfigs[sectionKey];
+    if (!config) return;
 
-            quizContainers.forEach((container, idx) => {
-                const qNum = idx + 1;
-                const correctAnswer = container.dataset.correct;
-                const feedbackBox = document.getElementById(`${sectionKey}-feedback-q${qNum}`);
-                const statusText = feedbackBox.querySelector('.status-text');
-                const explanationText = feedbackBox.querySelector('.explanation-text');
-                const selected = container.querySelector(`input[name="${sectionKey}-q${qNum}"]:checked`);
+    let totalPoints = 0;
+    let earnedPoints = 0;
 
-                container.classList.add('show-results');
-                container.querySelectorAll('.option').forEach(opt => opt.classList.remove('correct-choice', 'wrong-choice'));
+    // 1. EVALUATE MULTIPLE CHOICE
+    if (config.mcqId && config.mcData) {
+        config.mcData.forEach((q, index) => {
+            totalPoints++;
+            const container = document.getElementById(`${sectionKey}-mcq-${index}`);
+            if (!container) return;
 
-                if (selected) {
-                    const isCorrect = selected.value === correctAnswer;
-                    const explanation = selected.getAttribute('data-explain');
-                    if (isCorrect) {
-                        score++;
-                        selected.parentElement.classList.add('correct-choice');
-                        statusText.innerHTML = "<b>✅Correct!</b>";
-                        feedbackBox.className = 'feedback correct-feedback';
-                    } else {
-                        selected.parentElement.classList.add('wrong-choice');
-                        statusText.innerHTML = "<b>❌Incorrect.</b>";
-                        feedbackBox.className = 'feedback incorrect-feedback';
-                    }
-                    explanationText.innerHTML = explanation;
-                    feedbackBox.style.display = "block";
-                } else {
-                    statusText.innerHTML = "Please select an answer.";
-                    feedbackBox.style.display = "block";
-                }
+            // ===== ADD THIS LOGIC HERE TO LOCK THE SELECTIONS =====
+            // This stops any hovering, clicking, or selection adjustments on options
+            container.style.pointerEvents = 'none'; 
+            // ======================================================
+
+            const selected = container.querySelector(`input[name="${sectionKey}-q${index}"]:checked`);
+            const feedbackDiv = document.getElementById(`${sectionKey}-mc-fb-${index}`);
+
+            // Clear previous evaluation styles
+            container.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('correct-choice', 'wrong-choice');
             });
 
-            const summary = document.getElementById(config.scoreSummaryId);
-            const scoreText = document.getElementById(config.scoreTextId);
-            summary.style.display = "block";
-            scoreText.innerHTML = `You scored ${score} out of ${total}!`;
-        }
+            let isCorrect = false;
+            if (selected) {
+                if (parseInt(selected.value) === q.correct) {
+                    earnedPoints++;
+                    isCorrect = true;
+                    selected.closest('.option').classList.add('correct-choice');
+                } else {
+                    selected.closest('.option').classList.add('wrong-choice');
+                }
+            }
 
-        // ===================== RESET (SECTION-SCOPED) =====================
-        function resetSection(sectionKey) {
-    // Re-initialize state
-    initSectionState(sectionKey);
-    
-    // Re-render matching activity
-    renderMatchingForSection(sectionKey);
-    initMatchingEventsForSection(sectionKey);
-    
-    // Re-render MCQ
-    renderMCQForSection(sectionKey);
-    
-    // Hide score summaries
-    const section = quizSections[sectionKey];
-    if (section.matching) {
-        document.getElementById(section.matching.scoreSummaryId).style.display = 'none';
+            // Always highlight the correct answer choice
+            const correctOption = container.querySelector(`input[value="${q.correct}"]`);
+            if (correctOption) {
+                correctOption.closest('.option').classList.add('correct-choice');
+            }
+
+            if (feedbackDiv) {
+                feedbackDiv.style.display = 'block';
+                if (isCorrect) {
+                    feedbackDiv.className = 'feedback correct-feedback';
+                    feedbackDiv.innerHTML = `✅<b>Correct!</b> ${q.feedback}`;
+                } else {
+                    feedbackDiv.className = 'feedback wrong-feedback';
+                    const choiceLetter = selected ? String.fromCharCode(65 + parseInt(selected.value)) : 'None';
+                    const correctLetter = String.fromCharCode(65 + q.correct);
+                    feedbackDiv.innerHTML = `❌<b>Incorrect.</b> You chose ${choiceLetter}. The correct answer is ${correctLetter}.<br>${q.feedback}`;
+                }
+            }
+        });
     }
-    if (section.mcq) {
-        document.getElementById(section.mcq.scoreSummaryId).style.display = 'none';
+
+    // 2. EVALUATE IDENTIFICATION (If the active tab section contains it)
+    if (config.idId && config.idData) {
+        config.idData.forEach((q, index) => {
+            totalPoints++;
+            const inputField = document.getElementById(`${sectionKey}-id-input-${index}`);
+            const feedbackDiv = document.getElementById(`${sectionKey}-id-fb-${index}`);
+            if (!inputField) return;
+
+            // ===== LOCK INPUT TEXT FIELDS AS WELL =====
+            inputField.disabled = true; 
+            // =========================================
+
+            const userAns = inputField.value.trim().toLowerCase();
+            const isCorrect = q.acceptedAnswers.some(ans => userAns === ans.toLowerCase());
+
+            if (isCorrect) {
+                earnedPoints++;
+                inputField.style.borderColor = '#28a745';
+                inputField.style.backgroundColor = 'rgba(40, 167, 69, 0.15)';
+            } else {
+                inputField.style.borderColor = '#dc3545';
+                inputField.style.backgroundColor = 'rgba(220, 53, 69, 0.15)';
+            }
+
+            if (feedbackDiv) {
+                feedbackDiv.style.display = 'block';
+                if (isCorrect) {
+                    feedbackDiv.className = 'feedback correct-feedback';
+                    feedbackDiv.innerHTML = `✅<b>Correct!</b> ${q.feedback}`;
+                } else {
+                    feedbackDiv.className = 'feedback wrong-feedback';
+                    feedbackDiv.innerHTML = `❌<b>Incorrect.</b> Standard answer: <b>${q.acceptedAnswers[0]}</b><br>${q.feedback}`;
+                }
+            }
+        });
+    }
+
+    // Display summary banner box
+    const summaryBox = document.getElementById(config.summaryId);
+    const scoreText = document.getElementById(config.scoreTextId);
+    if (summaryBox && scoreText) {
+        scoreText.innerText = `You scored ${earnedPoints} / ${totalPoints}!`;
+        summaryBox.style.display = 'block';
+        summaryBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 }
 
+        
+        // ===================== RESET (SECTION-SCOPED) =====================
+        function resetSection(sectionKey) {
+    const config = sectionConfigs[sectionKey];
+    if (!config) return;
+
+    // Reset multiple choice layout rules
+    if (config.mcqId && config.mcData) {
+        config.mcData.forEach((q, index) => {
+            const container = document.getElementById(`${sectionKey}-mcq-${index}`);
+            if (container) {
+                container.style.pointerEvents = 'auto'; // <--- RE-ENABLE CLICKS
+                container.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('correct-choice', 'wrong-choice');
+                });
+            }
+            const radio = container?.querySelectorAll(`input[name="${sectionKey}-q${index}"]`);
+            if (radio) radio.forEach(r => r.checked = false);
+
+            const feedbackDiv = document.getElementById(`${sectionKey}-mc-fb-${index}`);
+            if (feedbackDiv) {
+                feedbackDiv.style.display = 'none';
+                feedbackDiv.innerHTML = '';
+            }
+        });
+    }
+
+    // Reset identification layout rules
+    if (config.idId && config.idData) {
+        config.idData.forEach((q, index) => {
+            const inputField = document.getElementById(`${sectionKey}-id-input-${index}`);
+            if (inputField) {
+                inputField.disabled = false; // <--- RE-ENABLE TEXT INPUTS
+                inputField.value = '';
+                inputField.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                inputField.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+            }
+            const feedbackDiv = document.getElementById(`${sectionKey}-id-fb-${index}`);
+            if (feedbackDiv) {
+                feedbackDiv.style.display = 'none';
+                feedbackDiv.innerHTML = '';
+            }
+        });
+    }
+
+    // Hide summary score box
+    const summaryBox = document.getElementById(config.summaryId);
+    if (summaryBox) summaryBox.style.display = 'none';
+}
+
+        
         // ===================== GLOBAL RESET (ALL SECTIONS) =====================
         function resetAll() {
             Object.keys(quizSections).forEach(sectionKey => {
