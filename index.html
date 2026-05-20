@@ -261,8 +261,8 @@
             color: var(--gold);
             width: 50px; height: 50px;
             display: flex;
-            align-items: right;
-            justify-content: right;
+            align-items: center;
+            justify-content: center;
             border-radius: 50%;
             text-decoration: none;
             border: 1px solid var(--gold);
@@ -1297,6 +1297,26 @@
     border: 1px solid #dc3545;
     color: #721c24;
 }
+
+            
+            /* Prevent caret cursors and accidental selection lines on interactive components */
+.nav-item, 
+.option, 
+.auto-option, 
+.quiz-container, 
+.auto-card,
+.btn-reset,
+button {
+    /* Prevents the blinking caret from appearing upon clicking */
+    user-select: none; 
+    -webkit-user-select: none; /* Safari override */
+    -moz-user-select: none;    /* Firefox override */
+    -ms-user-select: none;     /* IE/Edge override */
+    
+    /* Removes the browser-default active text input focus indication outline */
+    outline: none !important;
+}
+
             
 
             
@@ -1452,7 +1472,7 @@
                     </div>
                 
                 <!-- END TIMED QUIZ -->   
-               <br><br>
+               <br><br><br>
                     <h1>EXPLORE</h1>
                     <p>Let’s further explore our topic! Play this game about atoms, subatomic particles, and related concepts. Kindly follow the instructions provided in the game. Have fun while learning!</p>
                 <div class="embed-container">
@@ -2133,7 +2153,7 @@
                 <br><br>Stewart, K., & The Editors of Encyclopaedia Britannica. (2026, April 8). Atomic model. Encyclopaedia Britannica. https://www.britannica.com/science/atomic-model 
                 <br><br>Trefill, J. (2026). Development of atomic theory. Retrieved from https://www.britannica.com/science/atom/Development-of-atomic-theory#ref48343 
                 <br><br><br><b>Images</b>
-                <<br>Getty Images. (2018). Scientist illustration [Photograph]. ThoughtCo. https://www.thoughtco.com/thmb/_qfaVVgrjUWBxrSLy2TtflmwVwA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-947148218-1742a84786ae46b0b229da848348fb0f.jpg
+                <br>Getty Images. (2018). Scientist illustration [Photograph]. ThoughtCo. https://www.thoughtco.com/thmb/_qfaVVgrjUWBxrSLy2TtflmwVwA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-947148218-1742a84786ae46b0b229da848348fb0f.jpg
                 <br><br>Cloudfront. (n.d.). Atomic model illustration [Image]. https://d2av8kbir6lh9m.cloudfront.net/uploads/wzYHFCWRaWG29ioH6S5krAuUNLvC8bmIdDACX6Dm.jpg
                 <br><br>Biography.com Editors. (2019, October 28). John Dalton. Biography. https://www.biography.com/scientist/john-dalton
                 <br><br>Chemistry Learner. (n.d.). Dalton’s atomic theory. Chemistry Learner. https://www.chemistrylearner.com/daltons-atomic-theory.html
