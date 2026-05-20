@@ -137,6 +137,8 @@
             flex-direction: column;
 
             max-width: 1200px;
+            margin-right: auto;
+            margin-left: calc(260px + max(0px, (100% - 260px - 1200px) / 2));
         }
     
         
@@ -1322,6 +1324,7 @@
             <div class="nav-item" onclick="switchTab('evaluation')">Evaluation</div>
             <div class="nav-item" onclick="switchTab('others')">Other Learning Materials</div>
             <div class="nav-item" onclick="switchTab('authors')">About</div>
+            <div class="nav-item" onclick="switchTab('references')">References</div>
         </nav>
     </aside>
     
@@ -1332,6 +1335,9 @@
         <section id="home" class="content-section active">
             <div class="intro-card">
                 <h1>Home</h1>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/rsLZU6O.jpg" class="img-fluid" alt="Placeholder">
+                </div>
                 <div class="media-container">
                     <div class="video-wrapper">
                         <iframe id="intro-video-8" src="https://www.youtube.com/embed/Q2g6KodVMXY?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -1448,12 +1454,12 @@
                 <!-- END TIMED QUIZ -->   
                <br><br>
                     <h1>EXPLORE</h1>
+                    <p>Let’s further explore our topic! Play this game about atoms, subatomic particles, and related concepts. Kindly follow the instructions provided in the game. Have fun while learning!</p>
                 <div class="embed-container">
-                    <iframe src="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_all.html" allowfullscreen></iframe>
+                    <iframe src="https://scichamp.com/Chemistry%20games/atomic%20structure/" allowfullscreen></iframe>
                 </div>
-                <p><a href="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_all.html" target="_blank" style="color: var(--gold);">Open Simulation in New Tab</a></p>
-                    
-        </div>
+                    <p><a href="https://scichamp.com/Chemistry%20games/atomic%20structure/" target="_blank" style="color: var(--gold);">Open Simulation in New Tab</a></p>
+                </div>
         </section>
         
 
@@ -1465,17 +1471,15 @@
                 <br><br><br>
                 <div class="media-container">
                     <img src="https://i.imgur.com/gk04lAD.jpg" class="img-fluid" alt="Placeholder">
-                    <div class="media-title">Figure 1. States of Matter</div>
                 </div>
                 <br>
-                In figure 1 above, it shows that matter has 4 existing states: solid, liquid, gas, and plasma. Solid has a defined shape and volume. Particles within a solid are packed very close together fixed in an ordered arrangement like a table, chair and rock. Liquid state is defined to have volume but lacks a definite shape. Particles within a liquid are not packed as close together as in a solid, allowing them to slide against each other. Examples of liquids include water, oil, and alcohol.A gas lacks either a defined shape or volume. Gas particles are widely separated. Examples of gases include air and the helium in a balloon. Like a gas, a plasma lacks a defined shape or volume. However, the particles of a plasma are electrically charged and are separated by vast differences. Examples of plasma include lightning and the aurora.
+                Matter has 4 existing states: solid, liquid, gas, and plasma. Solid has a defined shape and volume. Particles within a solid are packed very close together fixed in an ordered arrangement like a table, chair and rock. Liquid state is defined to have volume but lacks a definite shape. Particles within a liquid are not packed as close together as in a solid, allowing them to slide against each other. Examples of liquids include water, oil, and alcohol.A gas lacks either a defined shape or volume. Gas particles are widely separated. Examples of gases include air and the helium in a balloon. Like a gas, a plasma lacks a defined shape or volume. However, the particles of a plasma are electrically charged and are separated by vast differences. Examples of plasma include lightning and the aurora.
                 <br><br><br>
                <div class="media-container">
                     <img src="https://i.imgur.com/2BNy5Zs.jpg" class="img-fluid" alt="Placeholder">
-                    <div class="media-title">Figure 2. Matter and its Smaller Constituents</div>
                 </div>
                 <br>
-                These states of matter, when zoomed in, are made up of smaller components. In Figure 2, matter is shown to be composed of molecules. A molecule is the smallest unit of a substance, formed when two or more atoms bond together, and it retains the chemical properties of that substance. Water, rocks, air, and even neon lights are all made up of molecules. These molecules, in turn, are made up of smaller particles called atoms. Atoms are the fundamental building blocks of all matter, and they are further composed of subatomic particles such as protons, neutrons, and electrons.
+                These states of matter, when zoomed in, are made up of smaller components. In the figure above, matter is shown to be composed of molecules. A molecule is the smallest unit of a substance, formed when two or more atoms bond together, and it retains the chemical properties of that substance. Water, rocks, air, and even neon lights are all made up of molecules. These molecules, in turn, are made up of smaller particles called atoms. Atoms are the fundamental building blocks of all matter, and they are further composed of subatomic particles such as protons, neutrons, and electrons.
                 <br><br>
                 <hr>
                 <br><br>
@@ -1950,7 +1954,7 @@
                 <br>
                 <hr>
                 <br>
-                <h1>Matching Activity</h1>
+                <h1>Part 1: Matching Activity</h1>
                 <div class="score-summary-box" id="experiment-matching-score-summary">
                     <h2 id="experiment-matching-final-score-text">You scored 0/0!</h2>
                     <p id="experiment-matching-final-message">Great job matching all pairs!</p>
@@ -1958,43 +1962,36 @@
                 <div id="experiment-matching-section"></div>
 
                 <br><br>
-                <h1>Multiple Choice</h1>
-                <div class="score-summary-box" id="experiment-score-summary">
-                    <h2 id="experiment-final-score-text">You scored 0/0!</h2>
-                    <p>Check the feedback below for explanations.</p>
-                </div>
-                <div id="experiment-mcq-section"></div>
-
+                
                 <div class="button-group">
-                    <button class="btn-submit" onclick="submitQuizForSection('experiment')">Submit Answers</button>
                     <button class="btn-reset" onclick="resetSection('experiment')">
                         <i class="fas fa-redo"></i> Reset Questions
-                        
                     </button>
                 </div>
 
                 <br><br>
-                <h1>Part 3: Drawing</h1>
+                <h1>Part 2: Draw and Label</h1>
                 <div class="embed-container">
                     <iframe src="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_all.html" allowfullscreen></iframe>
                 </div>
                 <p><a href="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_all.html" target="_blank" style="color: var(--gold);">Open Simulation in New Tab</a></p>
 
                 <br><br>
-                <h1>Part 4: Essay</h1>
+                <h1>Part 3: Essay</h1>
                 <div class="embed-container" id="form-fallback">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeXATY9nwEvbxwPwlH2MRTaT2OjwMGbOjVvaC3r8JcaJqVb-Q/viewform?embedded=true"
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd_Dv_jA_tsRT48Vb1BpmIL5FoQXptMcazuSJjAGBqOzCMh3w/viewform?pli=1?embedded=true"
                         width="100%" 
                         height="800" 
                         frameborder="0"
                         sandbox="allow-scripts allow-same-origin allow-forms">Loading…
                     </iframe> 
                 </div>
-                <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeXATY9nwEvbxwPwlH2MRTaT2OjwMGbOjVvaC3r8JcaJqVb-Q/viewform" target="_blank" style="color: var(--gold);">Open Form in New Tab (if not loading properly)</a></p>
+                <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSd_Dv_jA_tsRT48Vb1BpmIL5FoQXptMcazuSJjAGBqOzCMh3w/viewform?pli=1" target="_blank" style="color: var(--gold);">Open Form in New Tab (if not loading properly)</a></p>
 
                 <hr style="border: 0; border-top: 1px solid var(--gold); margin: 40px 0;">
                 
                 <br><br>
+                <h1>Part 4: Extended Activity</h1>
                 <div class="embed-container">
                     <iframe src="https://extended-activity.onrender.com/" style="height: 950px;" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>
                 </div>
@@ -2008,50 +2005,7 @@
          <section id="summary" class="content-section">
             <div class="intro-card">
                 <h1>Summary</h1>
-                <div class="auto-info-box">
-    <h3>Protons</h3>
-    <p>Protons are subatomic particles with a <b>positive electrical charge (+1)</b>. They are found clustered deep inside the nucleus at the center of an atom and help define its identity!</p>
-</div>
-
-<div class="auto-card">
-    <div class="auto-question">Question 1: Where are protons located within an atom?</div>
-    
-    <div class="auto-option" data-correct="true" onclick="checkAutoAnswer(this, true)">A) Inside the atomic nucleus</div>
-    <div class="auto-option" onclick="checkAutoAnswer(this, false)">B) Drifting outside in orbit paths</div>
-    <div class="auto-option" onclick="checkAutoAnswer(this, false)">C) Scattering around random empty fields</div>
-    <div class="auto-option" onclick="checkAutoAnswer(this, false)">D) Constantly shifting between inside and outside environments</div>
-    
-    <div class="auto-feedback-panel" 
-         data-correct-msg="Awesome job! Protons are tightly packed alongside neutrons right inside the center nucleus."
-         data-wrong-msg="Not quite. Protons do not roam freely; they stay bound tight in the nucleus structure.">
-    </div>
-</div>
-
-
-<div class="auto-info-box">
-    <h3>Electrons</h3>
-    <p>Electrons hold a <b>negative electrical charge (-1)</b>. Being extremely light, they orbit rapidly outside the heavy core nucleus inside region levels called electron shells.</p>
-</div>
-
-<div class="auto-card">
-    <div class="auto-question">Question 2: What is the electrical value assigned to standard electrons?</div>
-    
-    <div class="auto-option" onclick="checkAutoAnswer(this, false)">A) Positive (+1) charge</div>
-    <div class="auto-option" data-correct="true" onclick="checkAutoAnswer(this, true)">B) Negative (-1) charge</div>
-    <div class="auto-option" onclick="checkAutoAnswer(this, false)">C) Neutral (0) charge</div>
-    <div class="auto-option" onclick="checkAutoAnswer(this, false)">D) Variable fluctuating charge</div>
-    
-    <div class="auto-feedback-panel" 
-         data-correct-msg="Perfect! Electrons balance out protons by containing a clean negative charge."
-         data-wrong-msg="Remember, protons are positive (+), neutrons are neutral (0), and electrons carry the negative (-) value.">
-    </div>
-</div>
-
-                <div class="button-group">
-    <button type="button" class="btn-reset" onclick="resetTargetedAutomatedQuestions(this)">
-        <i class="fas fa-redo"></i> Reset Practice Questions
-    </button>
-</div>
+                
                 
             </div>
         </section>
@@ -2081,6 +2035,9 @@
         <section id="authors" class="content-section">
             <div class="intro-card">
                 <h1>About Us</h1>
+                <div class="media-container">
+                    <img src="https://i.imgur.com/rsLZU6O.jpg" class="img-fluid" alt="Placeholder">
+                </div>
                 <div class="media-container">
                     <div class="video-wrapper">
                         <iframe id="intro-video-9" src="https://www.youtube.com/embed/46BxpgooNGQ?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -2149,11 +2106,39 @@
                 </div>   
             </div>
         </section>
+
+        <section id="references" class="content-section">
+            <div class="intro-card">
+                <h1>References</h1><br>
+                <b>Content</b> 
+                <br> EBSCO Information Services. (n.d.). Subatomic particle. EBSCO Research Starters. Retrieved May 19, 2026, from https://www.ebsco.com/research-starters/physics/subatomic-particle
+                <br><br>Encyclopedia.com. (n.d.). Physics: Inner world search for subatomic particles. Encyclopedia.com. Retrieved May 19, 2026, from https://www.encyclopedia.com/science/science-magazines/physics-inner-world-search-subatomic-particles
+                <br><br>Helmenstine, A. M. (2020, August 27). Definition of state of matter. ThoughtCo. https://www.thoughtco.com/definition-of-state-of-matter-604659
+                <br><br>Physics Lab. (n.d.). What is the importance of the 3 subatomic particles? Physics Lab. Retrieved May 19, 2026, from 
+                <br><br>https://physics-lab.net/what-is-the-importance-of-the-3-subatomic-particles/
+                <br><br>Stewart, K., & The Editors of Encyclopaedia Britannica. (2026, April 8). Atomic model. Encyclopaedia Britannica. https://www.britannica.com/science/atomic-model 
+                <br><br>Trefill, J. (2026). Development of atomic theory. Retrieved from https://www.britannica.com/science/atom/Development-of-atomic-theory#ref48343 
+                <br><br><br><b>Images</b>
+                <br><br>Getty Images. (2018). Scientist illustration [Photograph]. ThoughtCo. https://www.thoughtco.com/thmb/_qfaVVgrjUWBxrSLy2TtflmwVwA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-947148218-1742a84786ae46b0b229da848348fb0f.jpg
+                <br><br>Cloudfront. (n.d.). Atomic model illustration [Image]. https://d2av8kbir6lh9m.cloudfront.net/uploads/wzYHFCWRaWG29ioH6S5krAuUNLvC8bmIdDACX6Dm.jpg
+                <br><br>Biography.com Editors. (2019, October 28). John Dalton. Biography. https://www.biography.com/scientist/john-dalton
+                <br><br>Chemistry Learner. (n.d.). Dalton’s atomic theory. Chemistry Learner. https://www.chemistrylearner.com/daltons-atomic-theory.html
+                <br><br>Fundación Española para la Ciencia y la Tecnología. (n.d.). Joseph J. Thomson: Nobel Prize winner, discoverer of the electron. Rincón Educativo. https://rinconeducativo.org/en/recursos-educativos/joseph-j-thomson-nobel-prize-winner-discoverer-electron/
+                <br><br>Encyclopaedia Britannica. (n.d.). Thomson atomic model. In Britannica. https://www.britannica.com/science/Thomson-atomic-model
+                <br><br>Encyclopaedia Britannica. (n.d.). Rutherford model. In Britannica. https://www.britannica.com/science/Rutherford-model
+                <br><br>Atomic Heritage Foundation. (n.d.). Niels Bohr. Atomic Heritage Foundation. https://ahf.nuclearmuseum.org/ahf/profile/niels-bohr/
+                <br><br>Nobel Prize. (n.d.). Erwin Schrödinger – Biographical. NobelPrize.org. https://www.nobelprize.org/prizes/physics/1933/schrodinger/biographical/
+                <br><br>Encyclopaedia Britannica. (n.d.). Bohr model. In Britannica. https://www.britannica.com/science/Bohr-model
+                <br><br>Science Ready. (n.d.). Schrödinger’s atomic model and spdf notation. Science Ready.
+                <br><br>OpenAI. (2026). Diagram showing the real-life applications of subatomic particles [AI-generated image]. ChatGPT. https://chat.openai.com/ 
+                <br><br><br><b>Videos</b>
+            </div>
+        </section>
         
         
 
         <footer>
-            <p>&copy; 2026 BALIW NA AKO | Created by the team..</p>
+            <p>&copy; 2026 HA-TOM! Blogspot | Created by the KA-AHATOM.</p>
         </footer>
     </main>
 
@@ -2370,16 +2355,16 @@
                                 { left: "Anything that has mass and occupies space.", right: "Matter", leftId: "experiment-matter", rightId: "experiment-mat" }
                             ],
                             clues: {
-                                'experiment-proton': '',
-                                'experiment-neutron': '',
-                                'experiment-electron': '',
-                                'experiment-atom': '',
-                                'experiment-matter': '',
-                                'experiment-pro': '',
-                                'experiment-neu': '',
-                                'experiment-ele': '',
-                                'experiment-ato': '',
-                                'experiment-mat': '',
+                                'experiment-proton': 'Protons carry a positive charge and are located inside the nucleus of an atom. They help determine the identity of an element (atomic number).',
+                                'experiment-neutron': 'Neutrons have no electrical charge but are about the same mass as protons. They also reside in the nucleus and help stabilize it.',
+                                'experiment-electron': 'Electrons are negatively charged particles that orbit the nucleus in energy levels. They are much lighter than protons and neutrons and are responsible for chemical bonding.',
+                                'experiment-atom': 'An atom is the basic unit of matter, composed of protons and neutrons in the nucleus, with electrons moving around it. All substances are made of atoms.',
+                                'experiment-matter': 'Matter refers to anything that takes up space and has mass, whether solid, liquid, gas, or plasma. Atoms are the fundamental units of matter.',
+                                'experiment-pro': 'Protons carry a positive charge and are located inside the nucleus of an atom. They help determine the identity of an element (atomic number).',
+                                'experiment-neu': 'Neutrons have no electrical charge but are about the same mass as protons. They also reside in the nucleus and help stabilize it.',
+                                'experiment-ele': 'Electrons are negatively charged particles that orbit the nucleus in energy levels. They are much lighter than protons and neutrons and are responsible for chemical bonding.',
+                                'experiment-ato': 'An atom is the basic unit of matter, composed of protons and neutrons in the nucleus, with electrons moving around it. All substances are made of atoms.',
+                                'experiment-mat': 'Matter refers to anything that takes up space and has mass, whether solid, liquid, gas, or plasma. Atoms are the fundamental units of matter.',
                             }
                         }
                     ]
@@ -2630,7 +2615,7 @@
 
         
         
-       // ===================== MCQ SUBMISSION (SECTION-SCOPED) =====================
+      // ===================== MCQ SUBMISSION (SECTION-SCOPED) =====================
         function submitQuizForSection(sectionKey) {
             const section = quizSections[sectionKey];
             if (!section || !section.mcq) return;
@@ -2652,6 +2637,12 @@
                 container.classList.add('show-results');
                 container.querySelectorAll('.option').forEach(opt => opt.classList.remove('correct-choice', 'wrong-choice'));
 
+                // ===== LOCK RADIO BUTTONS TO PREVENT EDITING AFTER SUBMISSION =====
+                container.querySelectorAll(`input[name="${sectionKey}-q${qNum}"]`).forEach(radio => {
+                    radio.disabled = true;
+                });
+                // =========================================================================
+
                 if (selected) {
                     const isCorrect = selected.value === correctAnswer;
                     const explanation = selected.getAttribute('data-explain');
@@ -2662,12 +2653,27 @@
                         feedbackBox.className = 'feedback correct-feedback';
                     } else {
                         selected.parentElement.classList.add('wrong-choice');
+                        
+                        // ===== ADDED: Find and highlight the correct answer if user got it wrong =====
+                        const correctRadio = container.querySelector(`input[name="${sectionKey}-q${qNum}"][value="${correctAnswer}"]`);
+                        if (correctRadio) {
+                            correctRadio.parentElement.classList.add('correct-choice');
+                        }
+                        // ============================================================================
+                        
                         statusText.innerHTML = "<b>❌Incorrect.</b>";
                         feedbackBox.className = 'feedback incorrect-feedback';
                     }
                     explanationText.innerHTML = explanation;
                     feedbackBox.style.display = "block";
                 } else {
+                    // ===== ADDED: Also highlight correct option if left blank for student reference =====
+                    const correctRadio = container.querySelector(`input[name="${sectionKey}-q${qNum}"][value="${correctAnswer}"]`);
+                    if (correctRadio) {
+                        correctRadio.parentElement.classList.add('correct-choice');
+                    }
+                    // ============================================================================
+                    
                     statusText.innerHTML = "Please select an answer.";
                     feedbackBox.style.display = "block";
                 }
@@ -2679,27 +2685,39 @@
             scoreText.innerHTML = `You scored ${score} out of ${total}!`;
         }
 
-        // ===================== RESET (SECTION-SCOPED) =====================
+        // ===== AUTOMATICALLY RESET EVERYTHING ON PAGE RELOAD / FRESH REFRESH =====
+        window.addEventListener('beforeunload', function() {
+            // Finds all form wrappers and inputs on the entire page and wipes their memory cache prior to unloading
+            const inputs = document.querySelectorAll('input[type="radio"]');
+            inputs.forEach(radio => {
+                radio.checked = false;
+                radio.disabled = false;
+            });
+        });
+
+
+// ===================== RESET (SECTION-SCOPED) =====================
         function resetSection(sectionKey) {
-    // Re-initialize state
-    initSectionState(sectionKey);
-    
-    // Re-render matching activity
-    renderMatchingForSection(sectionKey);
-    initMatchingEventsForSection(sectionKey);
-    
-    // Re-render MCQ
-    renderMCQForSection(sectionKey);
-    
-    // Hide score summaries
-    const section = quizSections[sectionKey];
-    if (section.matching) {
-        document.getElementById(section.matching.scoreSummaryId).style.display = 'none';
-    }
-    if (section.mcq) {
-        document.getElementById(section.mcq.scoreSummaryId).style.display = 'none';
-    }
-}
+            // Re-initialize state
+            initSectionState(sectionKey);
+            
+            // Re-render matching activity
+            renderMatchingForSection(sectionKey);
+            initMatchingEventsForSection(sectionKey);
+            
+            // Re-render MCQ
+            renderMCQForSection(sectionKey);
+            
+            // Hide score summaries
+            const section = quizSections[sectionKey];
+            if (section.matching) {
+                document.getElementById(section.matching.scoreSummaryId).style.display = 'none';
+            }
+            if (section.mcq) {
+                document.getElementById(section.mcq.scoreSummaryId).style.display = 'none';
+            }
+        }
+
 
         
         
