@@ -1317,6 +1317,32 @@ button {
     outline: none !important;
 }
 
+
+
+            /* Complete global ban on blinking caret cursors across interactive surfaces */
+.main-content,
+.main-content *,
+.sidebar,
+.sidebar * {
+    /* Prevents the browser from treating structural divs and layouts as editable text blocks */
+    user-select: none; 
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
+    
+    /* Disables default browser focus highlighting boundaries when elements are selected */
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent; /* Smooth behavior on mobile clicks */
+}
+
+/* Re-allow standard selective highlights ONLY on actual student text entry inputs if you have them */
+.main-content input[type="text"], 
+.main-content textarea {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+}
+
             
 
             
