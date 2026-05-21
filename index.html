@@ -133,13 +133,13 @@
             padding-bottom: 80px;
             font-size: 1.3rem;
             width: calc(100% - 260px);
-            display: block;
+            display: flex;
             flex-direction: column;
 
-            box-sizing: border-box;
+
             max-width: 1500px;
             margin-right: auto;
-            margin-left: 260px;
+            margin-left: calc(260px + max(0px, (100% - 260px - 1500px) / 2));
         }
     
         
