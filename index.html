@@ -133,10 +133,11 @@
             padding-bottom: 80px;
             font-size: 1.3rem;
             width: calc(100% - 260px);
-            display: flex;
+            display: block;
             flex-direction: column;
 
-            max-width: 1200px;
+            box-sizing: border-box;
+            max-width: 100%;
             margin-right: auto;
             margin-left: calc(260px + max(0px, (100% - 260px - 1200px) / 2));
         }
@@ -1357,7 +1358,7 @@ button {
         <button class="music-toggle-inline" id="musicToggle" onclick="toggleDiscussionMusic()" title="Toggle study music">
         <i class="fas fa-play" id="musicIcon"></i>
     </button>
-        <div class="brand">HA-TOM! Blogspot</div>
+        <div class="brand">HA-TOM? Blogspot</div>
     </header>
 
     <aside class="sidebar">
@@ -2002,7 +2003,7 @@ button {
                     <div class="auto-question">Question 2: How are subatomic particles applied in nuclear power plants?</div>
                     <div class="auto-option" onclick="checkAutoAnswer(this, false)">A) They produce light for microscopes</div>
                     <div class="auto-option" onclick="checkAutoAnswer(this, false)">B) They help create internet signals</div>
-                    <div class="auto-option" data-correct="true" onclick="checkAutoAnswer(this, true)">C) C. They release energy through nuclear fission</div>
+                    <div class="auto-option" data-correct="true" onclick="checkAutoAnswer(this, true)">C) They release energy through nuclear fission</div>
                     <div class="auto-option" onclick="checkAutoAnswer(this, false)">D) They form chemical bonds in plastics</div>
                     
                     <div class="auto-feedback-panel" 
@@ -2184,10 +2185,17 @@ button {
         <section id="authors" class="content-section">
             <div class="intro-card">
                 <h1>About Us</h1>
+                <b>Hi there, mga Ka‑Ha‑tom!</b>
+                <br>We’re your learning buddies in this blog, ready to explore science with you in fun and creative ways!
+                <br>We are 3rd year BSEd Science students — aspiring educators who are excited to share learning filled with curiosity and creativity. Our team is made up of five members:
+                <br>
                 <div class="media-container">
                     <img src="https://i.imgur.com/rsLZU6O.jpg" class="img-fluid" alt="Placeholder">
                 </div>
-                
+                <b>•</b> (From left to right ) Wilkin Villaflores, Hanie Angel Teodoro, Pauline R. Serrano, and Bea Villanueva — the ones who crafted the lesson plans, designed the activities, and prepared the whole content of this blog.
+                <br><b>•</b> On the rightmost side, you’ll meet John Renz Vertudazo, our blog developer, who happily managed the editing and made sure this humble learning space is ready for you.
+                <br>We truly hope you enjoyed learning and trying out the activities we prepared.  Remember, learning is more fun when we do it together!
+                <br>If you have questions or clarifications, kindly send us a message through our social links below. Let’s keep the learning going — because science is best when shared with joy!
                 <br><br><br><br><br><br><br><br><br><br><br><br>
                 <div class="social-container">
                     <a href="mailto:hh6762126@gmail.com" class="social-btn" target="_blank"><i class="fas fa-envelope"></i></a>
@@ -2268,7 +2276,7 @@ button {
         
 
         <footer>
-            <p>&copy; 2026 HA-TOM! Blogspot | Created by the KA-AHATOM.</p>
+            <p>&copy; 2026 HA-TOM? Blogspot | Created by KA-AHATOM.</p>
         </footer>
     </main>
 
