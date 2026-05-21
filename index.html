@@ -1359,7 +1359,13 @@ button {
                 word-break: break-all;
             }
                 
-            
+            .matching-item.wrong-match {
+    background: rgba(220, 53, 69, 0.25) !important;
+    border-color: #dc3545 !important;
+    color: #ff8d94 !important;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.5) !important;
+}
+
 
 
     </style>
@@ -2710,6 +2716,9 @@ button {
             const clueText = feedbackBox.querySelector('.matching-clue-text');
             const clues = quizSections[sectionKey].matching.data[questionNum - 1].clues;
 
+            // Prevent clicking on elements that are already locked/matched
+            if (clickedItem.classList.contains('matched')) return;
+
             if (!state.selected) {
                 container.querySelectorAll('.matching-item.selected').forEach(el => el.classList.remove('selected'));
                 clickedItem.classList.add('selected');
@@ -2735,8 +2744,11 @@ button {
                 state.correctCount++;
                 state.matchedPairs++;
                 const pairIndex = state.matchedPairs - 1;
+                
+                // Retain original successful color coding variables
                 firstItem.classList.add('matched', 'correct-match', `pair-${pairIndex % 6}`);
                 secondItem.classList.add('matched', 'correct-match', `pair-${pairIndex % 6}`);
+                
                 firstItem.classList.remove('selected');
                 state.selected = null;
 
@@ -2750,22 +2762,31 @@ button {
                     showMatchingScore(sectionKey, questionNum);
                 }
             } else {
-                firstItem.classList.add('shake', 'wrong-match');
-                secondItem.classList.add('shake', 'wrong-match');
+                // Increment pair counter so tracking moves forward even for mistakes
+                state.matchedPairs++;
+                
+                // ===== UPDATED: Instantly highlights red and locks them permanently from edits =====
+                firstItem.classList.add('matched', 'wrong-match');
+                secondItem.classList.add('matched', 'wrong-match');
+                
+                // Remove selected highlights clean
+                firstItem.classList.remove('selected');
+                secondItem.classList.remove('selected');
+                state.selected = null;
+                
                 statusText.innerHTML = "<b>❌Incorrect Match!</b>";
                 const clue = clues[firstItem.dataset.id] || clues[secondItem.dataset.id] || 'Try again!';
                 clueText.innerHTML = `<b>💡Clue:</b> ${clue}`;
                 feedbackBox.className = 'matching-feedback wrong-feedback';
                 feedbackBox.style.display = 'block';
+                updateMatchingProgress(sectionKey, questionNum);
 
-                setTimeout(() => {
-                    firstItem.classList.remove('shake', 'wrong-match');
-                    secondItem.classList.remove('shake', 'wrong-match');
-                    firstItem.classList.remove('selected');
-                    state.selected = null;
-                }, 600);
+                if (state.matchedPairs >= state.totalPairs) {
+                    showMatchingScore(sectionKey, questionNum);
+                }
             }
         }
+
 
         function updateMatchingProgress(sectionKey, questionNum) {
             const state = sectionStates[sectionKey].matching[questionNum];
